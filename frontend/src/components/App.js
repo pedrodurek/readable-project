@@ -11,7 +11,6 @@ class App extends Component {
     componentDidMount() {
 
         PostsAPI.getAll().then((posts) => {
-            console.log(posts)
             this.setState({ posts })
         })
 
@@ -25,13 +24,14 @@ class App extends Component {
                 posts: posts.filter((post) => post.id !== p.id).concat(p)
             })
         })
+
     }
 
     render() {
         
         const { posts } = this.state
         return (
-            <ListPosts posts={posts} updateVote={this.updateVote}/>
+            <ListPosts posts={posts} updateVote={this.updateVote} />
         )
 
     }
