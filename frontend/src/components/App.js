@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as PostsAPI from '../api/PostsAPI'
 import ListPosts from './ListPosts'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
 
@@ -31,7 +32,11 @@ class App extends Component {
         
         const { posts } = this.state
         return (
-            <ListPosts posts={posts} updateVote={this.updateVote} />
+            <div className="app">
+                <Route exact path="/" render={() => (
+                    <ListPosts posts={posts} updateVote={this.updateVote} />
+                )}/>
+            </div>
         )
 
     }
