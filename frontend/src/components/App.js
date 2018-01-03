@@ -19,11 +19,10 @@ class App extends Component {
 
     updateVote = (postId, vote) => {
         
-        const { posts } = this.state
         PostsAPI.voting(postId, vote).then((p) => {
-            this.setState({
+            this.setState(({ posts }) => ({
                 posts: posts.filter((post) => post.id !== p.id).concat(p)
-            })
+            }))
         })
 
     }
