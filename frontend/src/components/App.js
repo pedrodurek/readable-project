@@ -8,9 +8,9 @@ import ListPosts from './ListPosts'
 
 
 class App extends Component {
+    
 
     state = {
-        posts: [],
         filterOptions: [{
             key: 'voteScore',
             icon: () => (<FaSortNumericAsc size={20} />),
@@ -31,12 +31,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-
-        PostsAPI.getAll().then((posts) => {
-            console.log(posts)
-            this.setState({ posts: posts.sort(sortBy('-voteScore')) })
-        })
-
+        this.props.fetchAllPosts('-voteScore')
     }
 
     updateVote = (postId, vote) => {
@@ -78,4 +73,8 @@ class App extends Component {
     }
 }
 
-export default App
+const mapStateToProps = (state) => ({
+    posts: state.posts
+})
+
+export default connect(mapStateToProps)(App)
