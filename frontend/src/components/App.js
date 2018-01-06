@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import * as PostsAPI from '../api/PostsAPI'
 import { Route } from 'react-router-dom'
-import sortBy from 'sort-by'
+import { connect } from 'react-redux'
 import FaSortNumericAsc from 'react-icons/lib/fa/sort-numeric-asc'
 import FaSortNumericDesc from 'react-icons/lib/fa/sort-numeric-desc'
 import ListPosts from './ListPosts'
+import { fetchAllPosts, fetchVoting, sortPosts } from '../actions/posts'
 
 
 class App extends Component {
@@ -35,28 +35,17 @@ class App extends Component {
     }
 
     updateVote = (postId, vote) => {
-        
-        PostsAPI.voting(postId, vote).then((p) => {
-            this.setState(({ posts }) => ({
-                posts: posts.filter((post) => post.id !== p.id).concat(p)
-                    .sort(sortBy('-voteScore'))
-            }))
-        })
-
+        this.props.fetchVoting(postId, vote)
     }
 
-    filterHandler = (sort) => {
-
-        console.log(sort)
-        this.setState(({ posts }) => ({
-            posts: posts.sort(sortBy(sort))
-        }))
-
+    filterHandler = (sortBy) => {
+        this.props.sortPosts(sortBy)
     }
 
     render() {
         
-        const { posts, filterOptions } = this.state
+        const { filterOptions } = this.state
+        const { posts } = this.props
         return (
             <div className="app">
                 <Route exact path="/" render={() => (
@@ -71,10 +60,18 @@ class App extends Component {
         )
 
     }
+
 }
 
 const mapStateToProps = (state) => ({
     posts: state.posts
 })
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => ({
+    fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
+    fetchVoting: (postId, vote) => dispatch(fetchVoting(postId, vote)),
+    sortPosts: (sortBy) => dispatch(sortPosts(sortBy))
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
