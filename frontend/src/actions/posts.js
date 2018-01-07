@@ -1,8 +1,8 @@
 import * as PostsAPI from '../api/PostsAPI'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
-export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
 export const UPDATE_POSTS = 'UPDATE_POSTS'
+export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
 
 export const fetchAllPosts = (sortBy) => (dispatch) => {
 
@@ -20,18 +20,18 @@ export const sortPosts = (sortBy) => ({
 	sortBy
 })
 
-const getAllPosts = (posts, sortBy) => ({
+const getAllPosts = (posts) => ({
 	type: GET_ALL_POSTS,
 	posts
 })
 
-export const fetchVoting = (postId, vote) => (dispatch) => {
+export const fetchVoting = (postId, vote, sortBy) => (dispatch) => {
 
 	PostsAPI.voting(postId, vote).then((post) => {
 
 		dispatch(updatePost(post))
-		dispatch(sortPosts('-voteScore'))
-
+		dispatch(sortPosts(sortBy))
+		
 	})
 
 }

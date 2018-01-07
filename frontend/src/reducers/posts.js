@@ -16,7 +16,7 @@ const posts = (state = [], action) => {
 				.concat(action.post)
 		case SORT_ALL_POSTS:
 			let posts = [...state]
-			return posts.sort(sortBy(action.sortBy))
+			return posts.sort(sortBy(action.sortBy.key))
 		default:
 			return state
 
