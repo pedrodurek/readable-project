@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // Actions
-import { fetchAllPosts, fetchVoting, sortPosts } from '../actions/posts'
+import { fetchAllPostsByCategory, fetchVoting, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
 // Components
@@ -9,26 +9,25 @@ import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
 
+class Categories extends Component {
 
-class Posts extends Component {
-
-    componentDidMount() {
-        this.props.fetchAllPosts(this.props.sort)
+	componentDidMount() {
+        this.props.fetchAllPostsByCategory('xxx', this.props.sort)
         this.props.fetchAllCategories()
-
     }
-
+    
     sortHandler = (sortBy) => {
         this.props.sortPosts(sortBy)
     }
 
     filterByCategory() {
-
+		
     }
 
     render() {
 
         const { posts, sort, sortOptions, categories, fetchVoting } = this.props
+        console.log(sort)
         return (
             <div>
                 <ShowCategories categories={categories} />
@@ -45,6 +44,7 @@ class Posts extends Component {
             </div>
         )
     }
+
 }
 
 const mapStateToProps = (state) => ({
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
+    fetchAllPostsByCategory: (category, sortBy) => dispatch(fetchAllPostsByCategory(category, sortBy)),
     fetchVoting: (postId, vote, sortBy) => dispatch(fetchVoting(postId, vote, sortBy)),
     fetchAllCategories: () => dispatch(fetchAllCategories()),
     sortPosts: (sortBy) => { 
@@ -64,4 +64,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)

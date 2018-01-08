@@ -1,14 +1,18 @@
 import React from 'react'
-import { ButtonToolbar, Button } from 'react-bootstrap'
+import { ButtonToolbar } from 'react-bootstrap'
+import WrappedButton from './WrappedButton'
 
 const ShowCategories = ({ categories }) => (
 	<div>
 		<h2>Categories</h2>
 		<ButtonToolbar>
+			<WrappedButton url={'/'}>
+				all
+			</WrappedButton>
 			{categories.map((category) => (
-				<Button key={category.name} bsStyle="primary">
+				<WrappedButton key={category.name} url={`/${category.path}/posts`}>
 					{category.name}
-				</Button>
+				</WrappedButton>
 			))}
 		</ButtonToolbar>
 	</div>

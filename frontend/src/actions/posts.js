@@ -15,6 +15,17 @@ export const fetchAllPosts = (sortBy) => (dispatch) => {
 
 }
 
+export const fetchAllPostsByCategory = (category, sortBy) => (dispatch) => {
+
+	PostsAPI.getAllByCategory(category).then((posts) => {
+
+		dispatch(getAllPosts(posts))
+		dispatch(sortPosts(sortBy))
+
+	})
+
+}
+
 export const sortPosts = (sortBy) => ({
 	type: SORT_ALL_POSTS,
 	sortBy
