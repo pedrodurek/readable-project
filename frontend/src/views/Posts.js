@@ -32,6 +32,7 @@ class Posts extends Component {
         return (
             <div>
                 <ShowCategories categories={categories} />
+                <h2>Posts</h2>
                 <Select
                     currentSelected={sort.text}
                     options={sortOptions}

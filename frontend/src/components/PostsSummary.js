@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import FaSmileO from 'react-icons/lib/fa/smile-o'
 import FaFrownO from 'react-icons/lib/fa/frown-o'
 
@@ -8,7 +9,9 @@ const PostsSummary = ({ posts, sort, updateVote }) => {
             {posts.map((post) => (
                 <li key={post.id}>
                     <div className="post-content">
-                        <h2 className="post-title">{post.title}</h2>
+                        <Link to={`/post/${post.id}`}>
+                            <h2 className="post-title">{post.title}</h2>
+                        </Link>
                         <div className="post-author">Author: {post.author}</div>
                         <div className="post-num-comments">Number of comments: {post.commentCount}</div>
                         <div className="post-vote-score">Score: {post.voteScore}</div>
