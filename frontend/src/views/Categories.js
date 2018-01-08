@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // Actions
 import { fetchAllPostsByCategory, fetchVoting, sortPosts } from '../actions/posts'
@@ -12,8 +12,24 @@ import PostsSummary from '../components/PostsSummary'
 class Categories extends Component {
 
 	componentDidMount() {
-        this.props.fetchAllPostsByCategory('xxx', this.props.sort)
+
+        this.props.fetchAllPostsByCategory(
+            this.props.match.params.category, 
+            this.props.sort
+        )
         this.props.fetchAllCategories()
+
+    }
+
+    componentWillReceiveProps(newProps) {
+
+        if (this.props.match.params.category !== newProps.match.params.category) {
+            this.props.fetchAllPostsByCategory(
+                newProps.match.params.category, 
+                this.props.sort
+            )
+        }
+        
     }
     
     sortHandler = (sortBy) => {
@@ -27,7 +43,6 @@ class Categories extends Component {
     render() {
 
         const { posts, sort, sortOptions, categories, fetchVoting } = this.props
-        console.log(sort)
         return (
             <div>
                 <ShowCategories categories={categories} />

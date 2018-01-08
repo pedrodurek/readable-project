@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import Posts from './views/Posts'
 import Categories from './views/Categories'
 
-
 class App extends Component {
 
     render() {

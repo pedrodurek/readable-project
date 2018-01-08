@@ -4,7 +4,7 @@ const categories = (state = [], action) => {
 
 	switch (action.type) {
 		case GET_ALL_CATEGORIES:
-			return state.concat(action.categories)
+			return action.categories
 		default:
 			return state
 	}
