@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPostById } from '../actions/posts'
+import PostDetails from '../components/PostDetails'
 
-class PostDetails extends Component {
+class Post extends Component {
 
 
 	componentDidMount() {
@@ -12,8 +13,12 @@ class PostDetails extends Component {
 
 	}
 	render() {
+
+		const { post } = this.props
 		return (
-			<div></div>
+			<div>
+				<PostDetails post={post}/>
+			</div>
 		)
 	}
 
@@ -27,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchPostById: (id) => dispatch(fetchPostById(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)
+export default connect(mapStateToProps, mapDispatchToProps)(Post)

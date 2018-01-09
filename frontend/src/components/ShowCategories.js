@@ -10,7 +10,7 @@ const ShowCategories = ({ categories }) => (
 				all
 			</WrappedButton>
 			{categories.map((category) => (
-				<WrappedButton key={category.name} url={`/posts/${category.path}`}>
+				<WrappedButton key={category.name} url={`/${category.path}`}>
 					{category.name}
 				</WrappedButton>
 			))}

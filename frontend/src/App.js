@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Posts from './views/Posts'
 import Categories from './views/Categories'
-import PostDetails from './views/PostDetails'
+import Post from './views/Post'
 
 class App extends Component {
 
@@ -11,8 +11,8 @@ class App extends Component {
         return (
             <div className="app">
                 <Route exact path="/" component={Posts} />
-                <Route exact path="/posts/:category" component={Categories} />
-                <Route path="/post/:id" component={PostDetails} />
+                <Route exact path="/:category" component={Categories} />
+                <Route path="/post/:id" component={Post} />
             </div>
         )
 
