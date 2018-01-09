@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostById } from '../actions/posts'
+import { fetchPostById, fetchVoting, setPost } from '../actions/posts'
 import PostDetails from '../components/PostDetails'
 
 class Post extends Component {
@@ -14,10 +14,13 @@ class Post extends Component {
 	}
 	render() {
 
-		const { post } = this.props
+		const { post, fetchVoting } = this.props
 		return (
 			<div>
-				<PostDetails post={post}/>
+				<PostDetails 
+					post={post}
+					updateVote={fetchVoting}
+				/>
 			</div>
 		)
 	}
@@ -29,7 +32,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchPostById: (id) => dispatch(fetchPostById(id))
+	fetchPostById: (id) => dispatch(fetchPostById(id)),
+	fetchVoting: (postId, vote) => dispatch(fetchVoting(postId, vote))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

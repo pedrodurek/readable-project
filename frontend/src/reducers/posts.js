@@ -3,7 +3,8 @@ import {
 	GET_ALL_POSTS,
 	UPDATE_POSTS, 
 	SORT_ALL_POSTS,
-	GET_POST_BY_ID
+	GET_POST_BY_ID,
+	SET_POST
 } from '../actions/posts'
 
 
@@ -20,7 +21,6 @@ const posts = (state = [], action) => {
 			return posts.sort(sortBy(action.sortBy.key))
 		default:
 			return state
-
 	}
 
 }
@@ -28,11 +28,12 @@ const posts = (state = [], action) => {
 export const post = (state = {}, action) => {
 
 	switch (action.type) {
+		case SET_POST:
 		case GET_POST_BY_ID:
-			console.log('Teste')
 			return action.post
 		default:
 			return state
+
 	}
 
 }

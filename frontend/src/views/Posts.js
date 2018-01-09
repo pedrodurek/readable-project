@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // Actions
-import { fetchAllPosts, fetchVoting, sortPosts } from '../actions/posts'
+import { fetchAllPosts, fetchVotingAndSort, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
 // Components
@@ -22,13 +22,10 @@ class Posts extends Component {
         this.props.sortPosts(sortBy)
     }
 
-    filterByCategory() {
-
-    }
 
     render() {
 
-        const { posts, sort, sortOptions, categories, fetchVoting } = this.props
+        const { posts, sort, sortOptions, categories, fetchVotingAndSort } = this.props
         return (
             <div>
                 <ShowCategories categories={categories} />
@@ -41,7 +38,7 @@ class Posts extends Component {
                 <PostsSummary 
                     posts={posts} 
                     sort={sort}
-                    updateVote={fetchVoting}
+                    updateVote={fetchVotingAndSort}
                 />
             </div>
         )
@@ -57,7 +54,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
-    fetchVoting: (postId, vote, sortBy) => dispatch(fetchVoting(postId, vote, sortBy)),
+    fetchVoting: (postId, vote, sortBy) => dispatch(fetchVotingAndSort(postId, vote, sortBy)),
     fetchAllCategories: () => dispatch(fetchAllCategories()),
     sortPosts: (sortBy) => { 
         dispatch(setSort('post', sortBy))
