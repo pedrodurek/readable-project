@@ -16,7 +16,8 @@ export const getAll = () =>
 
 export const get = (postId) =>
 	fetch(`${api}/posts/${postId}`, {
-		method: 'GET'
+		method: 'GET',
+		headers
 	}).then(res => res.json())
 	.then(data => data)
 

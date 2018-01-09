@@ -3,6 +3,7 @@ import * as PostsAPI from '../api/PostsAPI'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const UPDATE_POSTS = 'UPDATE_POSTS'
 export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
+export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 
 export const fetchAllPosts = (sortBy) => (dispatch) => {
 
@@ -26,6 +27,14 @@ export const fetchAllPostsByCategory = (category, sortBy) => (dispatch) => {
 
 }
 
+export const fetchPostById = (id) => (dispatch) => {
+
+	PostsAPI.get(id).then((post) => {
+		dispatch(getPostById(post))
+	})
+
+}
+
 export const sortPosts = (sortBy) => ({
 	type: SORT_ALL_POSTS,
 	sortBy
@@ -34,6 +43,11 @@ export const sortPosts = (sortBy) => ({
 const getAllPosts = (posts) => ({
 	type: GET_ALL_POSTS,
 	posts
+})
+
+const getPostById = (post) => ({
+	type: GET_POST_BY_ID,
+	post
 })
 
 export const fetchVoting = (postId, vote, sortBy) => (dispatch) => {
