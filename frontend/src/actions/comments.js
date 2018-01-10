@@ -7,7 +7,7 @@ export const fetchCommentsByPost = (postId) => (dispatch) => {
 
 	CommentsAPI.getAllByPost(postId).then((comments) => {
 		dispatch(getAllCommentsByPost(comments))
-		dispatch(sortComments(''))
+		dispatch(sortComments('-voteScore'))
 	})
 
 }
