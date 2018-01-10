@@ -2,7 +2,8 @@ import { api, headers } from './UtilsAPI.js'
 
 export const getAllByPost = (postId) => 
 	fetch(`${api}/posts/${postId}/comments`, {
-		method: 'GET'
+		method: 'GET',
+		headers
 	}).then(res => res.json())
 	.then(data => data)
 
@@ -27,7 +28,7 @@ export const insert = (post) =>
 
 export const voting = (commentId, option) =>
 	fetch(`${api}/comments/${commentId}`, {
-		method: 'POST'
+		method: 'POST',
 		headers,
 		body: JSON.stringify({ option })
 	}).then(res => res.json())
@@ -35,13 +36,13 @@ export const voting = (commentId, option) =>
 
 export const update = (commentId, post) =>
 	fetch(`${api}/comments/${commentId}`, {
-		method: 'PUT'
+		method: 'PUT',
 		headers,
 		body: JSON.stringify(post)
 	}).then(res => res.json())
 	.then(data => data)
 
-export const delete = (commentId) =>
+export const del = (commentId) =>
 	fetch(`${api}/comments/${commentId}`, {
 		method: 'DELETE'
 	}).then(res => res.json())

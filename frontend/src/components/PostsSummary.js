@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import FaSmileO from 'react-icons/lib/fa/smile-o'
-import FaFrownO from 'react-icons/lib/fa/frown-o'
 import { If, Then, Else } from 'react-if'
+import VoteOptions from './VoteOptions'
 
 const PostsSummary = ({ posts, sort, updateVote }) => {
 	return (
@@ -19,14 +18,7 @@ const PostsSummary = ({ posts, sort, updateVote }) => {
                                     <div className="post-num-comments">Number of comments: {post.commentCount}</div>
                                     <div className="post-vote-score">Score: {post.voteScore}</div>
                                     <div className="post-category">Category: {post.category}</div>
-                                    <div className="post-vote">
-                                        <button onClick={() => updateVote(post.id, 'upVote', sort)} className="icon-btn">
-                                            <FaSmileO size={20} />
-                                        </button>
-                                        <button onClick={() => updateVote(post.id, 'downVote', sort)} className="icon-btn">
-                                            <FaFrownO size={20} />
-                                        </button>                            
-                                    </div>
+                                    <VoteOptions handler={(vote) =>  updateVote(post.id, vote, sort)} />
                                 </div>
                             </li>
                         ))}
