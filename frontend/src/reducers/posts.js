@@ -1,7 +1,7 @@
 import sortBy from 'sort-by'
 import {
 	GET_ALL_POSTS,
-	UPDATE_POSTS, 
+	UPDATE_POST, 
 	SORT_ALL_POSTS,
 	GET_POST_BY_ID,
 	SET_POST
@@ -13,7 +13,7 @@ const posts = (state = [], action) => {
 	switch (action.type) {
 		case GET_ALL_POSTS:
 			return action.posts
-		case UPDATE_POSTS:
+		case UPDATE_POST:
 			return state.filter((post) => post.id !== action.post.id)
 				.concat(action.post)
 		case SORT_ALL_POSTS:

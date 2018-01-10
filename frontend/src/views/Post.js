@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostById, fetchVoting } from '../actions/posts'
-import { fetchCommentsByPost } from '../actions/comments'
+import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
+import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
 
@@ -15,16 +15,20 @@ class Post extends Component {
 		this.props.fetchCommentsByPost(id)
 
 	}
+
 	render() {
 
-		const { post, comments, fetchVoting } = this.props
+		const { post, comments, fetchVotingPost, fetchVotingComment } = this.props
 		return (
 			<div>
 				<PostDetails 
 					post={post}
-					updateVote={fetchVoting}
+					updateVote={fetchVotingPost}
 				/>
-				<CommentList comments={comments} />
+				<CommentList 
+					comments={comments} 
+					updateVote={fetchVotingComment}
+				/>
 			</div>
 		)
 	}
@@ -38,8 +42,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	fetchPostById: (id) => dispatch(fetchPostById(id)),
-	fetchVoting: (postId, vote) => dispatch(fetchVoting(postId, vote)),
-	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId))
+	fetchVotingPost: (postId, vote) => dispatch(fetchVotingPost(postId, vote)),
+	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
+	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
