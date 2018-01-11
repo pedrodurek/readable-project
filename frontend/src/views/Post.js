@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap'
 import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
 import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
@@ -8,6 +9,9 @@ import SimpleModal from '../components/SimpleModal'
 
 class Post extends Component {
 
+	state = {
+		showModal: false
+	}
 
 	componentDidMount() {
 
@@ -17,16 +21,24 @@ class Post extends Component {
 
 	}
 
+	openModalAddComment = () => {
+		this.setState({ showModal: true })
+	}
+
 	render() {
 
 		const { post, comments, fetchVotingPost, fetchVotingComment } = this.props
+		const { showModal } = this.state
 		return (
 			<div>
+				<SimpleModal showModal={showModal}/>
 				<PostDetails 
 					post={post}
 					updateVote={fetchVotingPost}
 				/>
-				<SimpleModal />
+				<Button bsStyle="primary" onClick={this.openModalAddComment}>
+					Comment
+				</Button>
 				<CommentList 
 					comments={comments} 
 					updateVote={fetchVotingComment}
