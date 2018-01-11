@@ -4,6 +4,7 @@ import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
 import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
+import SimpleModal from '../components/SimpleModal'
 
 class Post extends Component {
 
@@ -25,6 +26,7 @@ class Post extends Component {
 					post={post}
 					updateVote={fetchVotingPost}
 				/>
+				<SimpleModal />
 				<CommentList 
 					comments={comments} 
 					updateVote={fetchVotingComment}
