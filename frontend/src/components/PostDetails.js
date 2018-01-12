@@ -1,6 +1,4 @@
 import React from 'react'
-import FaSmileO from 'react-icons/lib/fa/smile-o'
-import FaFrownO from 'react-icons/lib/fa/frown-o'
 import { formatDate } from '../utils/helper'
 import VoteOptions from '../components/VoteOptions'
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 const SimpleModal = ({ 
 	showModal,
@@ -7,8 +8,8 @@ const SimpleModal = ({
 	modalTitle, 
 	txtBtnOk, 
 	txtBtnCancel, 
-	handletBtnOk, 
-	handlerBtnCancel
+	handleBtnOk,
+	handleBtnCancel 
 }) => (
 	<div>
 		<Modal show={showModal}>
@@ -17,11 +18,15 @@ const SimpleModal = ({
 			</Modal.Header>
 			<Modal.Body>{children}</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={() => handlerBtnCancel}>{txtBtnCancel}</Button>
-				<Button onClick={() => handletBtnOk} bsStyle="primary">{txtBtnOk}</Button>
+				<Button onClick={() => handleBtnCancel}>{txtBtnCancel}</Button>
+				<Button onClick={() => handleBtnOk} bsStyle="primary">{txtBtnOk}</Button>
 			</Modal.Footer>
 		</Modal>
 	</div>
 )
 
+SimpleModal.defaultProps = {
+	txtBtnOk: 'OK',
+	txtBtnCancel: 'Cancel'
+}
 export default SimpleModal

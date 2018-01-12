@@ -6,11 +6,16 @@ import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actio
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
 import SimpleModal from '../components/SimpleModal'
+import CommentForm from '../components/CommentForm'
 
 class Post extends Component {
 
 	state = {
-		showModal: false
+		showModal: false,
+		comment: {
+			author: 'xxx',
+			body: 'aaaa'
+		}
 	}
 
 	componentDidMount() {
@@ -25,19 +30,32 @@ class Post extends Component {
 		this.setState({ showModal: true })
 	}
 
+	handleComment = (data) => {
+		console.log(data)
+	}
+
 	render() {
 
 		const { post, comments, fetchVotingPost, fetchVotingComment } = this.props
 		const { showModal } = this.state
 		return (
 			<div>
-				<SimpleModal showModal={showModal}/>
+				<SimpleModal 
+					showModal={showModal}
+					modalTitle={'Create Comment'}
+					txtBtnOk={'Create'}
+					handleBtnOk={() => {}}
+				>
+					<CommentForm 
+						handleSubmit={this.handleComment}
+					/>
+				</SimpleModal>
 				<PostDetails 
 					post={post}
 					updateVote={fetchVotingPost}
 				/>
 				<Button bsStyle="primary" onClick={this.openModalAddComment}>
-					Comment
+					Create Comment
 				</Button>
 				<CommentList 
 					comments={comments} 
