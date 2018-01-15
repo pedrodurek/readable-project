@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
+import { submit } from 'redux-form'
 import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
 import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
@@ -32,11 +33,12 @@ class Post extends Component {
 
 	handleComment = (data) => {
 		console.log(data)
+		this.setState({ showModal: false })
 	}
 
 	render() {
 
-		const { post, comments, fetchVotingPost, fetchVotingComment } = this.props
+		const { post, comments, fetchVotingPost, fetchVotingComment, submitComment } = this.props
 		const { showModal } = this.state
 		return (
 			<div>
@@ -44,10 +46,10 @@ class Post extends Component {
 					showModal={showModal}
 					modalTitle={'Create Comment'}
 					txtBtnOk={'Create'}
-					handleBtnOk={() => {}}
+					handleBtnOk={submitComment}
 				>
-					<CommentForm 
-						handleSubmit={this.handleComment}
+					<CommentForm
+						handleComment={this.handleComment}
 					/>
 				</SimpleModal>
 				<PostDetails 
@@ -76,7 +78,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchPostById: (id) => dispatch(fetchPostById(id)),
 	fetchVotingPost: (postId, vote) => dispatch(fetchVotingPost(postId, vote)),
 	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
-	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote))
+	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote)),
+	submitComment: () => dispatch(submit('initializeCommentForm'))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

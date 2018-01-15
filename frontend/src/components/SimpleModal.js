@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { If, Then, Else } from 'react-if'
 import PropTypes from 'prop-types'
 
 const SimpleModal = ({ 
@@ -9,7 +10,7 @@ const SimpleModal = ({
 	txtBtnOk, 
 	txtBtnCancel, 
 	handleBtnOk,
-	handleBtnCancel 
+	handleBtnCancel
 }) => (
 	<div>
 		<Modal show={showModal}>
@@ -19,7 +20,7 @@ const SimpleModal = ({
 			<Modal.Body>{children}</Modal.Body>
 			<Modal.Footer>
 				<Button onClick={() => handleBtnCancel}>{txtBtnCancel}</Button>
-				<Button onClick={() => handleBtnOk} bsStyle="primary">{txtBtnOk}</Button>
+				<Button onClick={handleBtnOk} bsStyle="primary">{txtBtnOk}</Button>
 			</Modal.Footer>
 		</Modal>
 	</div>

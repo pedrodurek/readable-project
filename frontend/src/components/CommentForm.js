@@ -1,8 +1,8 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, Form } from 'redux-form'
 
-const CommentForm = ({ handleSubmit }) => (
-	<form onSubmit={handleSubmit}>
+const CommentForm = ({ handleSubmit, handleComment }) => (
+	<Form onSubmit={handleSubmit(handleComment)}>
 		<label>Author</label>
 		<div>
 			<Field
@@ -19,9 +19,10 @@ const CommentForm = ({ handleSubmit }) => (
 				type="text"
 			/>
 		</div>
-	</form>
+	</Form>
 )
 
 export default reduxForm({
-	form: 'initializeCommentForm'
+	form: 'initializeCommentForm',
+	enableReinitialize: true
 })(CommentForm)
