@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, reduxForm, Form } from 'redux-form'
 
-const CommentForm = ({ handleSubmit, handleComment }) => (
-	<Form onSubmit={handleSubmit(handleComment)}>
+const CommentForm = ({ handleSubmit, handleAddComment }) => (
+	<Form onSubmit={handleSubmit(handleAddComment)}>
 		<label>Author</label>
 		<div>
 			<Field

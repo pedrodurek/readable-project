@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { If, Then, Else } from 'react-if'
 import PropTypes from 'prop-types'
 
 const SimpleModal = ({ 
