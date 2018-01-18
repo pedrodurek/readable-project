@@ -2,21 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { submit } from 'redux-form'
+import uuidv1 from 'uuid/v1'
 import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
-import { fetchCommentsByPost, fetchVoting as fetchVotingComment } from '../actions/comments'
+import { fetchCommentsByPost, fetchVoting as fetchVotingComment, fetchAddComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
 import SimpleModal from '../components/SimpleModal'
 import CommentForm from '../components/CommentForm'
 
+
 class Post extends Component {
 
 	state = {
-		showModal: false,
-		comment: {
-			author: 'xxx',
-			body: 'aaaa'
-		}
+		showModal: false
 	}
 
 	componentDidMount() {
@@ -32,8 +30,15 @@ class Post extends Component {
 	}
 
 	handleComment = (data) => {
-		console.log(data)
+
 		this.setState({ showModal: false })
+		this.props.fetchAddComment({
+			id: uuidv1(),
+			...data,
+			timestamp: Date.now(),
+			parentId: this.props.post.id
+		})
+		
 	}
 
 	render() {
@@ -79,7 +84,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchVotingPost: (postId, vote) => dispatch(fetchVotingPost(postId, vote)),
 	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
 	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote)),
-	submitComment: () => dispatch(submit('initializeCommentForm'))
+	submitComment: () => dispatch(submit('initializeCommentForm')),
+	fetchAddComment: (comment) => dispatch(fetchAddComment(comment))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

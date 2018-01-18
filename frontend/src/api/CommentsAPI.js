@@ -19,11 +19,11 @@ export const get = (commentId) =>
 	}).then(res => res.json())
 	.then(data => data)
 
-export const insert = (post) =>
+export const insert = (comment) =>
 	fetch(`${api}/comments`, {
 		method: 'POST',
 		headers,
-		body: JSON.stringify(post)
+		body: JSON.stringify(comment)
 	}).then(res => res.json())
 
 export const voting = (commentId, option) =>
