@@ -1,8 +1,9 @@
 import React from 'react'
 import { Field, reduxForm, Form } from 'redux-form'
 import PropTypes from 'prop-types'
+import Select from './Select'
 
-const PostForm = ({ handleSubmit, handleAddPost }) => (
+const PostForm = ({ handleSubmit, handleAddPost, categories }) => (
     <Form onSubmit={handleSubmit(handleAddPost)}>
         <label>Title</label>
         <div>
@@ -26,6 +27,18 @@ const PostForm = ({ handleSubmit, handleAddPost }) => (
                 name="author"
                 component="input"
                 type="text"
+            />
+        </div>
+        <label>Category</label>
+        <div>
+            <Field
+                name="category"
+                component={props => (
+                    <Select
+                        currentSelected={props.value}
+                        options={categories}
+                    />
+                )}
             />
         </div>
     </Form>

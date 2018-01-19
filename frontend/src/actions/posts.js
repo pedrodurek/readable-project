@@ -36,21 +36,6 @@ export const fetchPostById = (id) => (dispatch) => {
 
 }
 
-export const sortPosts = (sortBy) => ({
-	type: SORT_ALL_POSTS,
-	sortBy
-})
-
-const getAllPosts = (posts) => ({
-	type: GET_ALL_POSTS,
-	posts
-})
-
-const getPostById = (post) => ({
-	type: GET_POST_BY_ID,
-	post
-})
-
 export const fetchVotingAndSort = (postId, vote, sortBy) => (dispatch) => {
 
 	PostsAPI.voting(postId, vote).then((post) => {
@@ -73,12 +58,37 @@ export const fetchVoting = (postId, vote) => (dispatch) => {
 
 }
 
-const updatePost = (post) => ({
-	type: UPDATE_POST,
-	post
+export const fetchAddPost = (data) => (dispatch) => {
+
+	PostsAPI.insert(data).then((post) => {
+		// dispatch(addPost(post))
+	}).catch(() => {})
+
+}
+
+
+
+export const sortPosts = (sortBy) => ({
+	type: SORT_ALL_POSTS,
+	sortBy
 })
 
 export const setPost = (post) => ({
 	type: SET_POST,
 	post	
+})
+
+const getAllPosts = (posts) => ({
+	type: GET_ALL_POSTS,
+	posts
+})
+
+const getPostById = (post) => ({
+	type: GET_POST_BY_ID,
+	post
+})
+
+const updatePost = (post) => ({
+	type: UPDATE_POST,
+	post
 })
