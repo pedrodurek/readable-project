@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, MenuItem } from 'react-bootstrap'
-const Select = ({ currentSelected, options, handler }) => (
-		<Dropdown id="filter-dropdown" onSelect={handler}>
+const Select = ({ currentSelected, options, handle }) => (
+		<Dropdown id="filter-dropdown" onSelect={handle}>
 			<Dropdown.Toggle>
 				{currentSelected}
 			</Dropdown.Toggle>

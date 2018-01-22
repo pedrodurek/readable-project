@@ -32,7 +32,7 @@ class Categories extends Component {
         
     }
     
-    sortHandler = (sortBy) => {
+    sortHandle = (sortBy) => {
         this.props.sortPosts(sortBy)
     }
 
@@ -50,7 +50,7 @@ class Categories extends Component {
                 <Select
                     currentSelected={sort.text}
                     options={sortOptions}
-                    handler={this.sortHandler}
+                    handle={this.sortHandle}
                 />
                 <PostsSummary 
                     posts={posts} 

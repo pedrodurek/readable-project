@@ -36,7 +36,7 @@ class Posts extends Component {
                     options={sortOptions}
                     handler={this.sortHandler}
                 />
-					<Link className="close-search" to="/posts">
+					<Link className="close-search" to="/post/new">
 						<button>
 							New Post
 						</button>

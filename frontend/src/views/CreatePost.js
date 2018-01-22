@@ -29,7 +29,10 @@ class CreatePost extends Component {
                 <h2>New Post</h2>
                 <PostForm
                     handleAddPost={this.handlePost}
-                    categories={categories}
+                    categories={categories.map((category) => ({
+                        text: category.name,
+                        key: category.path
+                    }))}
                 />
             </div>
         )

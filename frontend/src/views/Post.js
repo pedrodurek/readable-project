@@ -19,9 +19,9 @@ class Post extends Component {
 
 	componentDidMount() {
 
-		const { id } = this.props.match.params
-		this.props.fetchPostById(id)
-		this.props.fetchCommentsByPost(id)
+		const { post_id } = this.props.match.params
+		this.props.fetchPostById(post_id)
+		this.props.fetchCommentsByPost(post_id)
 
 	}
 

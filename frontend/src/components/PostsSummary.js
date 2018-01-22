@@ -11,7 +11,7 @@ const PostsSummary = ({ posts, sort, updateVote }) => {
                         {posts.map((post) => (
                             <li key={post.id}>
                                 <div className="post-content">
-                                    <Link to={`/post/${post.id}`}>
+                                    <Link to={`/${post.category}/${post.id}`}>
                                         <h2 className="post-title">{post.title}</h2>
                                     </Link>
                                     <div className="post-author">Author: {post.author}</div>

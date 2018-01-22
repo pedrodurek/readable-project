@@ -33,14 +33,19 @@ const PostForm = ({ handleSubmit, handleAddPost, categories }) => (
         <div>
             <Field
                 name="category"
-                component={props => (
+                component={({ input }) => (
                     <Select
-                        currentSelected={props.value}
+                        currentSelected={
+                            input.value || 
+                            ((categories.length > 0)?categories[0].text:'')
+                        }
                         options={categories}
+                        handle={(category) => input.onChange(category.text)}
                     />
                 )}
             />
         </div>
+        <button type="submit">Create</button>
     </Form>
 )
 
