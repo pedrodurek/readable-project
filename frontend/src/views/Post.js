@@ -14,7 +14,9 @@ import CommentForm from '../components/CommentForm'
 class Post extends Component {
 
 	state = {
-		showModal: false
+		showModal: false,
+		editComment: false,
+		comment: {}
 	}
 
 	componentDidMount() {
@@ -25,13 +27,17 @@ class Post extends Component {
 
 	}
 
-	openModalAddComment = () => {
+	openModal = () => {
 		this.setState({ showModal: true })
+	}
+
+	closeModal = () => {
+		this.setState({ showModal: false })
 	}
 
 	handleComment = (data) => {
 
-		this.setState({ showModal: false })
+		this.closeModal()
 		this.props.fetchAddComment({
 			id: uuidv1(),
 			...data,
@@ -41,32 +47,47 @@ class Post extends Component {
 		
 	}
 
+	handleEditComment = (commentId) => {
+
+
+		this.setState({ 
+			editComment: true, 
+			showModal: true,
+			comment: this.props.comments
+				.find((comment) => comment.id === commentId)	
+		})
+
+	}
+
 	render() {
 
 		const { post, comments, fetchVotingPost, fetchVotingComment, submitComment } = this.props
-		const { showModal } = this.state
+		const { showModal, editComment, comment } = this.state
 		return (
 			<div>
 				<SimpleModal 
 					showModal={showModal}
-					modalTitle={'Create Comment'}
-					txtBtnOk={'Create'}
+					modalTitle={`${editComment?'Edit':'Create'} Comment`}
+					txtBtnOk={`${editComment?'Save':'Create'}`}
 					handleBtnOk={submitComment}
+					handleBtnCancel={this.closeModal}
 				>
 					<CommentForm
 						handleComment={this.handleComment}
+						initialValues={comment}
 					/>
 				</SimpleModal>
 				<PostDetails 
 					post={post}
 					updateVote={fetchVotingPost}
 				/>
-				<Button bsStyle="primary" onClick={this.openModalAddComment}>
+				<Button bsStyle="primary" onClick={this.openModal}>
 					Create Comment
 				</Button>
 				<CommentList 
 					comments={comments} 
 					updateVote={fetchVotingComment}
+					handleEditComment={this.handleEditComment}
 				/>
 			</div>
 		)

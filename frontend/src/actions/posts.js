@@ -66,6 +66,15 @@ export const fetchAddPost = (data) => (dispatch) => {
 
 }
 
+export const fetchEditPost = (postId, data) => (dispatch) => {
+
+	PostsAPI.update(postId, data).then((post) => {
+		
+	}).catch(() => {})
+
+}
+
+
 
 
 export const sortPosts = (sortBy) => ({

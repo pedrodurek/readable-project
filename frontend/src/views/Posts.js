@@ -14,6 +14,7 @@ import PostsSummary from '../components/PostsSummary'
 class Posts extends Component {
 
     componentDidMount() {
+
         this.props.fetchAllPosts(this.props.sort)
         this.props.fetchAllCategories()
 
@@ -26,7 +27,7 @@ class Posts extends Component {
 
     render() {
 
-        const { posts, sort, sortOptions, categories, fetchVotingAndSort } = this.props
+        const { posts, sort, sortOptions, categories, fetchVoting } = this.props
         return (
             <div>
                 <ShowCategories categories={categories} />
@@ -36,15 +37,15 @@ class Posts extends Component {
                     options={sortOptions}
                     handler={this.sortHandler}
                 />
-					<Link className="close-search" to="/post/new">
-						<button>
-							New Post
-						</button>
-					</Link>
+                <Link className="close-search" to="/post/new">
+                    <button>
+                        New Post
+                    </button>
+                </Link>
                 <PostsSummary 
                     posts={posts} 
                     sort={sort}
-                    updateVote={fetchVotingAndSort}
+                    updateVote={fetchVoting}
                 />
             </div>
         )

@@ -18,7 +18,7 @@ const PostsSummary = ({ posts, sort, updateVote }) => {
                                     <div className="post-num-comments">Number of comments: {post.commentCount}</div>
                                     <div className="post-vote-score">Score: {post.voteScore}</div>
                                     <div className="post-category">Category: {post.category}</div>
-                                    <VoteOptions handler={(vote) =>  updateVote(post.id, vote, sort)} />
+                                    <VoteOptions handle={(vote) => updateVote(post.id, vote, sort)} />
                                 </div>
                             </li>
                         ))}

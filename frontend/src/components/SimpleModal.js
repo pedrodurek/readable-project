@@ -18,7 +18,7 @@ const SimpleModal = ({
 			</Modal.Header>
 			<Modal.Body>{children}</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={() => handleBtnCancel}>{txtBtnCancel}</Button>
+				<Button onClick={handleBtnCancel}>{txtBtnCancel}</Button>
 				<Button onClick={handleBtnOk} bsStyle="primary">{txtBtnOk}</Button>
 			</Modal.Footer>
 		</Modal>

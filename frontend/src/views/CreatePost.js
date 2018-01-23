@@ -11,13 +11,14 @@ class CreatePost extends Component {
         this.props.fetchAllCategories()
     }
 
-    handlePost = (data) => {
+    handleAddPost = (data) => {
 
         this.props.fetchAddPost({
             id: uuidv1(),
             ...data,
             timestamp: Date.now()
         })
+        this.props.history.push('/')
 
     }
 
@@ -28,11 +29,12 @@ class CreatePost extends Component {
             <div>
                 <h2>New Post</h2>
                 <PostForm
-                    handleAddPost={this.handlePost}
+                    handlePost={this.handleAddPost}
                     categories={categories.map((category) => ({
                         text: category.name,
                         key: category.path
                     }))}
+                    newPost={true}
                 />
             </div>
         )

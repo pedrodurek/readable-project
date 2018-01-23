@@ -3,8 +3,8 @@ import { Field, reduxForm, Form } from 'redux-form'
 import PropTypes from 'prop-types'
 import Select from './Select'
 
-const PostForm = ({ handleSubmit, handleAddPost, categories }) => (
-    <Form onSubmit={handleSubmit(handleAddPost)}>
+const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
+    <Form onSubmit={handleSubmit(handlePost)}>
         <label>Title</label>
         <div>
             <Field
@@ -27,12 +27,14 @@ const PostForm = ({ handleSubmit, handleAddPost, categories }) => (
                 name="author"
                 component="input"
                 type="text"
+                disabled={!newPost}
             />
         </div>
         <label>Category</label>
         <div>
             <Field
                 name="category"
+                disabled={!newPost}
                 component={({ input }) => (
                     <Select
                         currentSelected={
@@ -45,7 +47,7 @@ const PostForm = ({ handleSubmit, handleAddPost, categories }) => (
                 )}
             />
         </div>
-        <button type="submit">Create</button>
+        <button type="submit">{newPost?'Create':'Save'}</button>
     </Form>
 )
 
@@ -56,5 +58,6 @@ PostForm.defaultProps = {
 }
 
 export default reduxForm({
-    form: 'initializePostForm'
+    form: 'initializePostForm',
+    enableReinitialize: true
 })(PostForm)

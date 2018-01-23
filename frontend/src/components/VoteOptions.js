@@ -2,12 +2,12 @@ import React from 'react'
 import FaSmileO from 'react-icons/lib/fa/smile-o'
 import FaFrownO from 'react-icons/lib/fa/frown-o'
 
-const VoteOptions = ({ handler }) => (
+const VoteOptions = ({ handle }) => (
 	<div className="post-vote">
-	    <button onClick={() => handler('upVote')} className="icon-btn">
+	    <button onClick={() => handle('upVote')} className="icon-btn">
 	        <FaSmileO size={20} />
 	    </button>
-	    <button onClick={() => handler('downVote')} className="icon-btn">
+	    <button onClick={() => handle('downVote')} className="icon-btn">
 	        <FaFrownO size={20} />
 	    </button>                            
 	</div>
