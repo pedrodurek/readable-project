@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { submit } from 'redux-form'
 import uuidv1 from 'uuid/v1'
-import { fetchPostById, fetchVoting as fetchVotingPost } from '../actions/posts'
+import { fetchPostById, fetchRemovePost, fetchVoting as fetchVotingPost } from '../actions/posts'
 import { fetchCommentsByPost, fetchVoting as fetchVotingComment, fetchAddComment } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
@@ -59,6 +59,11 @@ class Post extends Component {
 
 	}
 
+	handleRemovePost = (postId) => {
+		this.props.fetchRemovePost(postId)
+		this.props.history.push('/')
+	}
+
 	render() {
 
 		const { post, comments, fetchVotingPost, fetchVotingComment, submitComment } = this.props
@@ -80,6 +85,7 @@ class Post extends Component {
 				<PostDetails 
 					post={post}
 					updateVote={fetchVotingPost}
+					handleRemovePost={this.handleRemovePost}
 				/>
 				<Button bsStyle="primary" onClick={this.openModal}>
 					Create Comment
@@ -106,7 +112,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
 	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote)),
 	submitComment: () => dispatch(submit('initializeCommentForm')),
-	fetchAddComment: (comment) => dispatch(fetchAddComment(comment))
+	fetchAddComment: (comment) => dispatch(fetchAddComment(comment)),
+	fetchRemovePost: (postId) => dispatch(fetchRemovePost(postId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

@@ -3,7 +3,6 @@ import { Field, reduxForm, Form } from 'redux-form'
 
 const CommentForm = ({ handleSubmit, handleComment, initialValues }) => (
 	<Form onSubmit={handleSubmit(handleComment)}>
-		{console.log(initialValues)}
 		<label>Author</label>
 		<div>
 			<Field

@@ -5,6 +5,7 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
 export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 export const SET_POST = 'SET_POST'
+export const REMOVE_POST = 'REMOVE_POST'
 
 export const fetchAllPosts = (sortBy) => (dispatch) => {
 
@@ -74,6 +75,16 @@ export const fetchEditPost = (postId, data) => (dispatch) => {
 
 }
 
+export const fetchRemovePost = (postId) => (dispatch) => {
+
+	console.log('Teste')
+	PostsAPI.del(postId).then((post) => {
+		console.log(post)
+	}).catch(() => {})
+
+}
+
+
 
 
 
@@ -101,3 +112,9 @@ const updatePost = (post) => ({
 	type: UPDATE_POST,
 	post
 })
+
+const deletePost = (post) => ({
+	type: REMOVE_POST,
+	post
+})
+

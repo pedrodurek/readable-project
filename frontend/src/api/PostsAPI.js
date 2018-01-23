@@ -46,6 +46,7 @@ export const update = (postId, post) =>
 
 export const del = (postId) =>
 	fetch(`${api}/posts/${postId}`, {
-		method: 'DELETE'
+		method: 'DELETE',
+		headers
 	}).then(res => res.json())
 

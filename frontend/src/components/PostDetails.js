@@ -1,10 +1,11 @@
 import React from 'react'
 import FaEdit from 'react-icons/lib/fa/edit'
+import FaTrash from 'react-icons/lib/fa/trash-o'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helper'
 import VoteOptions from '../components/VoteOptions'
 
-const PostDetails = ({ post, updateVote }) => (
+const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 	<div>
         <div className="post-title">{post.title}</div>
         <div className="post-author">Author: {post.author}</div>
@@ -12,6 +13,10 @@ const PostDetails = ({ post, updateVote }) => (
         <div className="post-num-comments">Number of comments: {post.commentCount}</div>
         <div className="post-vote-score">Score: {post.voteScore}</div>
         <div className="post-category">Category: {post.category}</div>
+		<button onClick={() => handleRemovePost(post.id)}>
+			<FaEdit size={20} />
+			Delete
+		</button>
 		<button>
 			<Link to={`/post/${post.id}`}>
 				<FaEdit size={20} />
