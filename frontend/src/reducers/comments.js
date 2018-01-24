@@ -2,7 +2,8 @@ import {
 	GET_COMMENTS_BY_POST,
 	SORT_ALL_COMMENTS,
 	UPDATE_COMMENT,
-	ADD_COMMENT
+	ADD_COMMENT,
+    REMOVE_COMMENT
 } from '../actions/comments'
 import sortBy from 'sort-by'
 
@@ -19,6 +20,8 @@ const comments = (state = [], action) => {
 				.concat(action.comment)
 		case ADD_COMMENT:
 			return [...state, action.comment]
+		case REMOVE_COMMENT:
+			return state.filter((comment) => comment.id !== action.commentId)
 		default:
 			return state
 	}

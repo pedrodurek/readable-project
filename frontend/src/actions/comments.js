@@ -4,6 +4,7 @@ export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
 export const SORT_ALL_COMMENTS = 'SORT_ALL_COMMENTS'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 
 export const fetchCommentsByPost = (postId) => (dispatch) => {
 
@@ -30,6 +31,14 @@ export const fetchAddComment = (data) => (dispatch) => {
 export const fetchVoting = (commentId, vote) => (dispatch) => {
 
 	CommentsAPI.voting(commentId, vote).then((comment) => {
+		dispatch(removeComment(commentId));
+	})
+
+}
+
+export const fetchRemoveComment = (commentId) => (dispatch) => {
+
+	CommentsAPI.del(commentId).then((comment) => {
 
 		dispatch(updateComment(comment))
 		dispatch(sortComments('-voteScore'))
@@ -57,4 +66,9 @@ const sortComments = (sortBy) => ({
 const updateComment = (comment) => ({
 	type: UPDATE_COMMENT,
 	comment
+})
+
+const removeComment = (commentId) => ({
+	type: type,
+	commentId
 })
