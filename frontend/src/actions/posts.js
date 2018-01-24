@@ -77,7 +77,6 @@ export const fetchEditPost = (postId, data) => (dispatch) => {
 
 export const fetchRemovePost = (postId) => (dispatch) => {
 
-	console.log('Teste')
 	PostsAPI.del(postId).then((post) => {
 		console.log(post)
 	}).catch(() => {})

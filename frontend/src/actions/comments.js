@@ -31,18 +31,18 @@ export const fetchAddComment = (data) => (dispatch) => {
 export const fetchVoting = (commentId, vote) => (dispatch) => {
 
 	CommentsAPI.voting(commentId, vote).then((comment) => {
-		dispatch(removeComment(commentId));
-	})
-
-}
-
-export const fetchRemoveComment = (commentId) => (dispatch) => {
-
-	CommentsAPI.del(commentId).then((comment) => {
 
 		dispatch(updateComment(comment))
 		dispatch(sortComments('-voteScore'))
+		
+	})
+	
+}
 
+export const fetchRemoveComment = (commentId) => (dispatch) => {
+	
+	CommentsAPI.del(commentId).then((comment) => {
+		dispatch(removeComment(commentId))
 	})
 
 }
@@ -69,6 +69,6 @@ const updateComment = (comment) => ({
 })
 
 const removeComment = (commentId) => ({
-	type: type,
+	type: REMOVE_COMMENT,
 	commentId
 })

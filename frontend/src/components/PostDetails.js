@@ -13,17 +13,17 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
         <div className="post-num-comments">Number of comments: {post.commentCount}</div>
         <div className="post-vote-score">Score: {post.voteScore}</div>
         <div className="post-category">Category: {post.category}</div>
-		<button onClick={() => handleRemovePost(post.id)}>
-			<FaEdit size={20} />
-			Delete
-		</button>
 		<button>
 			<Link to={`/post/${post.id}`}>
 				<FaEdit size={20} />
 				Edit
 			</Link>
 		</button>
-        <VoteOptions handler={(vote) =>  updateVote(post.id, vote)} />
+		<button onClick={() => handleRemovePost(post.id)}>
+			<FaTrash size={20} />
+			Delete
+		</button>
+        <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
 	</div>
 )
 

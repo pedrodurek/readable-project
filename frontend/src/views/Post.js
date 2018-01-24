@@ -4,7 +4,12 @@ import { Button } from 'react-bootstrap'
 import { submit } from 'redux-form'
 import uuidv1 from 'uuid/v1'
 import { fetchPostById, fetchRemovePost, fetchVoting as fetchVotingPost } from '../actions/posts'
-import { fetchCommentsByPost, fetchVoting as fetchVotingComment, fetchAddComment } from '../actions/comments'
+import { 
+	fetchCommentsByPost, 
+	fetchVoting as fetchVotingComment, 
+	fetchAddComment,
+	fetchRemoveComment
+} from '../actions/comments'
 import PostDetails from '../components/PostDetails'
 import CommentList from '../components/CommentList'
 import SimpleModal from '../components/SimpleModal'
@@ -63,6 +68,10 @@ class Post extends Component {
 		this.props.fetchRemovePost(postId)
 		this.props.history.push('/')
 	}
+	
+	handleRemoveComment = (commentId) => {
+		this.props.fetchRemoveComment(commentId)
+	}
 
 	render() {
 
@@ -94,6 +103,7 @@ class Post extends Component {
 					comments={comments} 
 					updateVote={fetchVotingComment}
 					handleEditComment={this.handleEditComment}
+					handleRemoveComment={this.handleRemoveComment}
 				/>
 			</div>
 		)
@@ -113,7 +123,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote)),
 	submitComment: () => dispatch(submit('initializeCommentForm')),
 	fetchAddComment: (comment) => dispatch(fetchAddComment(comment)),
-	fetchRemovePost: (postId) => dispatch(fetchRemovePost(postId))
+	fetchRemovePost: (postId) => dispatch(fetchRemovePost(postId)),
+	fetchRemoveComment: (commentId) => dispatch(fetchRemoveComment(commentId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
