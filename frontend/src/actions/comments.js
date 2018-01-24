@@ -1,3 +1,4 @@
+import uuidv1 from 'uuid/v1'
 import * as CommentsAPI from '../api/CommentsAPI'
 
 export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
@@ -17,9 +18,15 @@ export const fetchCommentsByPost = (postId) => (dispatch) => {
 
 }
 
-export const fetchAddComment = (data) => (dispatch) => {
+export const fetchAddComment = (postId, data) => (dispatch) => {
 
-	CommentsAPI.insert(data).then((comment) => {
+	const newComment = {
+		id: uuidv1(),
+		...data,
+		timestamp: Date.now(),
+		parentId: postId
+	}
+	CommentsAPI.insert(newComment).then((comment) => {
 
 		dispatch(addComment(comment))
 		dispatch(sortComments('-voteScore'))

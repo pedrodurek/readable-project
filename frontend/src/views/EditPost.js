@@ -8,7 +8,7 @@ class EditPost extends Component {
 
     componentDidMount() {
 
-        const { post_id } = this.props.match.params
+        const { match: { params: { post_id } } } = this.props
 		this.props.fetchPostById(post_id)
         this.props.fetchAllCategories()
 
@@ -16,10 +16,9 @@ class EditPost extends Component {
 
     handleEditPost = (data) => {
 
-        const { title, body } = data
-        this.props.fetchEditPost(this.props.post.id, {
-            title,
-            body
+        const { history, post: { id } } = this.props
+        this.props.fetchEditPost(id, data, () => {
+            history.push('/')
         })
         
     }
@@ -52,7 +51,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchPostById: (id) => dispatch(fetchPostById(id)),
     fetchAllCategories: () => dispatch(fetchAllCategories()),
-    fetchEditPost: (postId, data) => dispatch(fetchEditPost(postId, data))
+    fetchEditPost: (postId, data, callback) => dispatch(fetchEditPost(postId, data, callback))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost)

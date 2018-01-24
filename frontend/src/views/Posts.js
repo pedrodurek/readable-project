@@ -35,7 +35,7 @@ class Posts extends Component {
                 <Select
                     currentSelected={sort.text}
                     options={sortOptions}
-                    handler={this.sortHandler}
+                    handle={this.sortHandler}
                 />
                 <Link className="close-search" to="/post/new">
                     <button>

@@ -1,3 +1,4 @@
+import uuidv1 from 'uuid/v1'
 import * as PostsAPI from '../api/PostsAPI'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
@@ -59,19 +60,29 @@ export const fetchVoting = (postId, vote) => (dispatch) => {
 
 }
 
-export const fetchAddPost = (data) => (dispatch) => {
+export const fetchAddPost = (data, callback) => (dispatch) => {
 
-	PostsAPI.insert(data).then((post) => {
-		// dispatch(addPost(post))
-	}).catch(() => {})
+	const newPost = {
+		id: uuidv1(),
+		...data,
+		timestamp: Date.now()
+	}
+	PostsAPI.insert(newPost).then((post) => {
+		callback()
+	})
 
 }
 
-export const fetchEditPost = (postId, data) => (dispatch) => {
-
-	PostsAPI.update(postId, data).then((post) => {
-		
-	}).catch(() => {})
+export const fetchEditPost = (postId, data, callback) => (dispatch) => {
+	
+	const { title, body } = data
+	PostsAPI.update(postId, {
+		title,
+		body
+	}).then((post) => {
+		console.log(callback)
+		callback()
+	})
 
 }
 
@@ -79,7 +90,7 @@ export const fetchRemovePost = (postId) => (dispatch) => {
 
 	PostsAPI.del(postId).then((post) => {
 		console.log(post)
-	}).catch(() => {})
+	})
 
 }
 

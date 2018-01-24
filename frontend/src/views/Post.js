@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { submit } from 'redux-form'
-import uuidv1 from 'uuid/v1'
 import { fetchPostById, fetchRemovePost, fetchVoting as fetchVotingPost } from '../actions/posts'
 import { 
 	fetchCommentsByPost, 
@@ -26,7 +25,7 @@ class Post extends Component {
 
 	componentDidMount() {
 
-		const { post_id } = this.props.match.params
+		const { match: { params: { post_id } } } = this.props
 		this.props.fetchPostById(post_id)
 		this.props.fetchCommentsByPost(post_id)
 
@@ -43,12 +42,7 @@ class Post extends Component {
 	handleComment = (data) => {
 
 		this.closeModal()
-		this.props.fetchAddComment({
-			id: uuidv1(),
-			...data,
-			timestamp: Date.now(),
-			parentId: this.props.post.id
-		})
+		this.props.fetchAddComment(this.props.post.id, data);
 		
 	}
 
@@ -122,7 +116,7 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
 	fetchVotingComment: (commentId, vote) => dispatch(fetchVotingComment(commentId, vote)),
 	submitComment: () => dispatch(submit('initializeCommentForm')),
-	fetchAddComment: (comment) => dispatch(fetchAddComment(comment)),
+	fetchAddComment: (postId, data) => dispatch(fetchAddComment(postId, data)),
 	fetchRemovePost: (postId) => dispatch(fetchRemovePost(postId)),
 	fetchRemoveComment: (commentId) => dispatch(fetchRemoveComment(commentId))
 })

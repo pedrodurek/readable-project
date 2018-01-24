@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PostForm from '../components/PostForm'
 import { fetchAddPost } from '../actions/posts'
 import { fetchAllCategories } from '../actions/categories'
-import uuidv1 from 'uuid/v1'
 
 class CreatePost extends Component {
 
@@ -13,12 +12,9 @@ class CreatePost extends Component {
 
     handleAddPost = (data) => {
 
-        this.props.fetchAddPost({
-            id: uuidv1(),
-            ...data,
-            timestamp: Date.now()
+        this.props.fetchAddPost(data, () => {
+            this.props.history.push('/')
         })
-        this.props.history.push('/')
 
     }
 
@@ -47,7 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchAddPost: (post) => dispatch(fetchAddPost(post)),
+    fetchAddPost: (post, callback) => dispatch(fetchAddPost(post, callback)),
     fetchAllCategories: () => dispatch(fetchAllCategories())
 })
 

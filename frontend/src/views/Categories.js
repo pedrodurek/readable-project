@@ -13,21 +13,18 @@ class Categories extends Component {
 
 	componentDidMount() {
 
-        this.props.fetchAllPostsByCategory(
-            this.props.match.params.category, 
-            this.props.sort
-        )
+        const { match: { params: { category } }, sort } = this.props
+        this.props.fetchAllPostsByCategory(category, sort)
         this.props.fetchAllCategories()
 
     }
 
     componentWillReceiveProps(newProps) {
 
-        if (this.props.match.params.category !== newProps.match.params.category) {
-            this.props.fetchAllPostsByCategory(
-                newProps.match.params.category, 
-                this.props.sort
-            )
+        const { match: { params: { category } }, sort } = this.props
+        const { match: { params } } = newProps
+        if (category !== params.category) {
+            this.props.fetchAllPostsByCategory(params.category, sort)
         }
         
     }
