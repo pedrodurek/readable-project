@@ -1,7 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const InputValidation = ({ input, label, type, disabled, meta: { touched, error, warning } }) => (
+const InputValidation = ({ 
+	input, 
+	label, 
+	type, 
+	disabled, 
+	meta: { touched, error, warning } 
+}) => (
 	<div>
 		<label>{label}</label>
 		<div>
