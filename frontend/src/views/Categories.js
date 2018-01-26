@@ -45,7 +45,7 @@ class Categories extends Component {
                 <ShowCategories categories={categories} />
                 <h2>Posts</h2>
                 <Select
-                    currentSelected={sort.text}
+                    value={sort.text}
                     options={sortOptions}
                     handle={this.sortHandle}
                 />

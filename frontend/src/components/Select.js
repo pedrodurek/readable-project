@@ -1,16 +1,16 @@
 import React from 'react'
 import { Dropdown, MenuItem } from 'react-bootstrap'
-const Select = ({ currentSelected, options, handle }) => (
-		<Dropdown id="filter-dropdown" onSelect={handle}>
+const Select = ({ value, options, handle, disabled }) => (
+		<Dropdown id="filter-dropdown" onSelect={handle} disabled={disabled}>
 			<Dropdown.Toggle>
-				{currentSelected}
+				{value}
 			</Dropdown.Toggle>
-			<Dropdown.Menu>
+			<Dropdown.Menu disabled="true">
 				{options.map((option) => (
-					<MenuItem 
+					<MenuItem
 						key={option.key} 
 						eventKey={option} 
-						active={option.text === currentSelected}
+						active={option.text === value}
 					>
 						{option.text}
 					</MenuItem>
