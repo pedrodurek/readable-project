@@ -2,34 +2,33 @@ import React from 'react'
 import { Field, reduxForm, Form } from 'redux-form'
 import PropTypes from 'prop-types'
 import Select from './Select'
+import InputValidation from './InputValidation'
+import { required, minLength5 } from '../utils/helper'
 
 const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
     <Form onSubmit={handleSubmit(handlePost)}>
-        <label>Title</label>
-        <div>
-            <Field
-                name="title"
-                component="input"
-                type="text" 
-            />
-        </div>
-        <label>Body</label>
-        <div>
-            <Field
-                name="body"
-                component="input"
-                type="text"
-            />
-        </div>
-        <label>Author</label>
-        <div>
-            <Field
-                name="author"
-                component="input"
-                type="text"
-                disabled={!newPost}
-            />
-        </div>
+        <Field
+            label="Title"
+            name="title"
+            component={InputValidation}
+            validate={[ required, minLength5 ]}
+            type="text" 
+        />
+        <Field
+            label="Body"
+            name="body"
+            component={InputValidation}
+            validate={[ required, minLength5 ]}
+            type="text"
+        />
+        <Field
+            label="Author"
+            name="author"
+            component={InputValidation}
+            validate={[ required, minLength5 ]}
+            type="text"
+            disabled={!newPost}
+        />
         <label>Category</label>
         <div>
             <Field
