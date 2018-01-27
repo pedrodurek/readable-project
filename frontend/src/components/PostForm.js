@@ -51,9 +51,10 @@ const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
 )
 
 PostForm.propTypes = { 
-}
-
-PostForm.defaultProps = {
+    handleSubmit: PropTypes.func.isRequired,
+    handlePost: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
+    newPost: PropTypes.bool.isRequired
 }
 
 export default reduxForm({

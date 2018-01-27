@@ -43,9 +43,8 @@ class Posts extends Component {
                     </button>
                 </Link>
                 <PostsSummary 
-                    posts={posts} 
-                    sort={sort}
-                    updateVote={fetchVoting}
+                    posts={posts}
+                    updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
                 />
             </div>
         )

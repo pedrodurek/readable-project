@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { ButtonToolbar } from 'react-bootstrap'
 import WrappedButton from './WrappedButton'
 
@@ -18,5 +19,9 @@ const ShowCategories = ({ categories }) => (
 		</ButtonToolbar>
 	</div>
 )
+
+ShowCategories.propTypes = {
+	categories: PropTypes.array.isRequired
+}
 
 export default ShowCategories

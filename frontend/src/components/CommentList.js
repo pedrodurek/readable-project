@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import VoteOptions from './VoteOptions'
@@ -23,5 +24,12 @@ const CommentList = ({ comments, updateVote, handleEditComment, handleRemoveComm
 		))}
 	</ol>
 )
+
+CommentList.propTypes = {
+	comments: PropTypes.array.isRequired,
+	updateVote: PropTypes.func.isRequired,
+	handleEditComment: PropTypes.func.isRequired,
+	handleRemoveComment: PropTypes.func.isRequired
+}
 
 export default CommentList

@@ -20,9 +20,14 @@ const InputValidation = ({
 )
 
 InputValidation.propTypes = {
+	label: PropTypes.string.isRequired,
+	type: PropTypes.string,
+	disabled: PropTypes.bool
 }
 
 InputValidation.defaultProps = {
+	type: 'text',
+	disabled: false
 }
 
 export default InputValidation

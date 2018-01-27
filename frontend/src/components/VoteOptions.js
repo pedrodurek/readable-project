@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import FaSmileO from 'react-icons/lib/fa/smile-o'
 import FaFrownO from 'react-icons/lib/fa/frown-o'
 
@@ -12,5 +13,9 @@ const VoteOptions = ({ handle }) => (
 	    </button>                            
 	</div>
 )
+
+VoteOptions.propTypes = {
+	handle: PropTypes.func.isRequired
+}
 
 export default VoteOptions

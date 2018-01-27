@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import { Link } from 'react-router-dom'
@@ -26,5 +27,11 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
         <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
 	</div>
 )
+
+PostDetails.propTypes = {
+	post: PropTypes.object.isRequired,
+	updateVote: PropTypes.func.isRequired,
+	handleRemovePost: PropTypes.func.isRequired
+}
 
 export default PostDetails

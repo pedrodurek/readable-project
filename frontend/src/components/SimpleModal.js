@@ -25,8 +25,20 @@ const SimpleModal = ({
 	</div>
 )
 
+SimpleModal.propTypes = {
+	showModal: PropTypes.bool.isRequired,
+	children: PropTypes.node.isRequired,
+	modalTitle: PropTypes.string.isRequired,
+	txtBtnOk: PropTypes.string,
+	txtBtnCancel: PropTypes.string,
+	handleBtnOk: PropTypes.func,
+	handleBtnCancel: PropTypes.func
+}
+
 SimpleModal.defaultProps = {
 	txtBtnOk: 'OK',
-	txtBtnCancel: 'Cancel'
+	txtBtnCancel: 'Cancel',
+	handleBtnOk: () => {},
+	handleBtnCancel: () => {}
 }
 export default SimpleModal

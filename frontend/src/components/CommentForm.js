@@ -1,9 +1,10 @@
 import React from 'react'
 import { Field, reduxForm, Form } from 'redux-form'
+import PropTypes from 'prop-types'
 import InputValidation from './InputValidation'
 import { required, minLength5 } from '../utils/helper'
 
-const CommentForm = ({ handleSubmit, handleComment, initialValues }) => (
+const CommentForm = ({ handleSubmit, handleComment }) => (
 	<Form onSubmit={handleSubmit(handleComment)}>
 		<Field
 			label="Author"
@@ -21,6 +22,11 @@ const CommentForm = ({ handleSubmit, handleComment, initialValues }) => (
 		/>
 	</Form>
 )
+
+CommentForm.propTypes = {
+	handleSubmit: PropTypes.func.isRequired,
+	handleComment: PropTypes.func.isRequired
+}
 
 export default reduxForm({
 	form: 'initializeCommentForm',

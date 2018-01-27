@@ -51,8 +51,7 @@ class Categories extends Component {
                 />
                 <PostsSummary 
                     posts={posts} 
-                    sort={sort}
-                    updateVote={fetchVoting}
+                    updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
                 />
             </div>
         )
