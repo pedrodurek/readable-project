@@ -1,25 +1,22 @@
 import uuidv1 from 'uuid/v1'
 import * as CommentsAPI from '../api/CommentsAPI'
 
-export const GET_COMMENTS_BY_POST = 'GET_COMMENTS_BY_POST'
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
+export const RECEIVE_COMMENTS_BY_POST = 'RECEIVE_COMMENTS_BY_POST'
 export const SORT_ALL_COMMENTS = 'SORT_ALL_COMMENTS'
-export const UPDATE_COMMENT = 'UPDATE_COMMENT'
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+export const RECEIVE_UPDATE_COMMENT = 'RECEIVE_UPDATE_COMMENT'
+export const RECEIVE_ADD_COMMENT = 'RECEIVE_ADD_COMMENT'
+export const RECEIVE_REMOVE_COMMENT = 'RECEIVE_REMOVE_COMMENT'
 
 export const fetchCommentsByPost = (postId) => (dispatch) => {
-
+	dispatch(setIsFetching(true))
 	CommentsAPI.getAllByPost(postId).then((comments) => {
-
-		dispatch(getAllCommentsByPost(comments))
+		dispatch(receiveCommentsByPost(comments))
 		dispatch(sortComments('-voteScore'))
-
 	})
-
 }
 
 export const fetchAddComment = (postId, data) => (dispatch) => {
-
 	const newComment = {
 		id: uuidv1(),
 		...data,
@@ -27,41 +24,39 @@ export const fetchAddComment = (postId, data) => (dispatch) => {
 		parentId: postId
 	}
 	CommentsAPI.insert(newComment).then((comment) => {
-
-		dispatch(addComment(comment))
+		dispatch(receiveAddComment(comment))
 		dispatch(sortComments('-voteScore'))
-		
-	}).catch(() => {})
-	
+	})
 }
 
 export const fetchVoting = (commentId, vote) => (dispatch) => {
-
 	CommentsAPI.voting(commentId, vote).then((comment) => {
-
-		dispatch(updateComment(comment))
+		dispatch(receiveUpdateComment(comment))
 		dispatch(sortComments('-voteScore'))
-		
 	})
-	
 }
 
 export const fetchRemoveComment = (commentId) => (dispatch) => {
-	
 	CommentsAPI.del(commentId).then((comment) => {
-		dispatch(removeComment(commentId))
+		dispatch(receiveRemoveComment(commentId))
 	})
-
 }
 
-const addComment = (comment) => ({
-	type: ADD_COMMENT,
-	comment
+const setIsFetching = (isFetching) => ({
+	type: REQUEST_COMMENTS,
+	isFetching
 })
 
-const getAllCommentsByPost = (comments) => ({
-	type: GET_COMMENTS_BY_POST,
-	comments
+const receiveAddComment = (comment) => ({
+	type: RECEIVE_ADD_COMMENT,
+	comment,
+	isFetching: false
+})
+
+const receiveCommentsByPost = (comments) => ({
+	type: RECEIVE_COMMENTS_BY_POST,
+	comments,
+	isFetching: false
 })
 
 const sortComments = (sortBy) => ({
@@ -69,13 +64,14 @@ const sortComments = (sortBy) => ({
 	sortBy
 })
 
-
-const updateComment = (comment) => ({
-	type: UPDATE_COMMENT,
-	comment
+const receiveUpdateComment = (comment) => ({
+	type: RECEIVE_UPDATE_COMMENT,
+	comment,
+	isFetching: false
 })
 
-const removeComment = (commentId) => ({
-	type: REMOVE_COMMENT,
-	commentId
+const receiveRemoveComment = (commentId) => ({
+	type: RECEIVE_REMOVE_COMMENT,
+	commentId,
+	isFetching: false
 })

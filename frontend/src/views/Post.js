@@ -29,6 +29,7 @@ class Post extends Component {
 	}
 
 	componentDidMount() {
+		console.log('teste')
 		const { match: { params: { post_id } } } = this.props
 		this.props.fetchPostById(post_id)
 		this.props.fetchCommentsByPost(post_id)
@@ -141,7 +142,7 @@ class Post extends Component {
 
 const mapStateToProps = (state) => ({
 	post: state.post,
-	comments: state.comments
+	comments: state.comments.comments
 })
 
 const mapDispatchToProps = (dispatch) => ({

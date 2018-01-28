@@ -17,7 +17,7 @@ const Loading = ({ show, fullScreen }) => {
 }
 
 Loading.propTypes = {
-	enabled: PropTypes.bool.isRequired,
+	show: PropTypes.bool.isRequired,
 	fullScreen: PropTypes.bool
 }
 

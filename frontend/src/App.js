@@ -32,7 +32,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	isFetching: state.categories.isFetching
+	isFetching: state.categories.isFetching || state.comments.isFetching
 })
 
 export default connect(mapStateToProps)(App)
