@@ -5,21 +5,21 @@ import PropTypes from 'prop-types'
 const SimpleModal = ({ 
 	showModal,
 	children, 
-	modalTitle, 
-	txtBtnOk, 
-	txtBtnCancel, 
-	handleBtnOk,
-	handleBtnCancel
+	title, 
+	confirmLabel, 
+	cancelLabel, 
+	onConfirm,
+	onCancel
 }) => (
 	<div>
-		<Modal show={showModal}>
+		<Modal show={showModal} onHide={onCancel}>
 			<Modal.Header closeButton>
-				<Modal.Title>{modalTitle}</Modal.Title>
+				<Modal.Title>{title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>{children}</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={handleBtnCancel}>{txtBtnCancel}</Button>
-				<Button onClick={handleBtnOk} bsStyle="primary">{txtBtnOk}</Button>
+				<Button onClick={onCancel}>{cancelLabel}</Button>
+				<Button onClick={onConfirm} bsStyle="primary">{confirmLabel}</Button>
 			</Modal.Footer>
 		</Modal>
 	</div>
@@ -28,17 +28,17 @@ const SimpleModal = ({
 SimpleModal.propTypes = {
 	showModal: PropTypes.bool.isRequired,
 	children: PropTypes.node.isRequired,
-	modalTitle: PropTypes.string.isRequired,
-	txtBtnOk: PropTypes.string,
-	txtBtnCancel: PropTypes.string,
-	handleBtnOk: PropTypes.func,
-	handleBtnCancel: PropTypes.func
+	title: PropTypes.string.isRequired,
+	confirmLabel: PropTypes.string,
+	cancelLabel: PropTypes.string,
+	onConfirm: PropTypes.func,
+	onCancel: PropTypes.func
 }
 
 SimpleModal.defaultProps = {
-	txtBtnOk: 'OK',
-	txtBtnCancel: 'Cancel',
-	handleBtnOk: () => {},
-	handleBtnCancel: () => {}
+	confirmLabel: 'OK',
+	cancelLabel: 'Cancel',
+	onConfirm: () => {},
+	onCancel: () => {}
 }
 export default SimpleModal

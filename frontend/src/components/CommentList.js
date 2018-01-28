@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'react-bootstrap'
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import VoteOptions from './VoteOptions'
@@ -12,14 +13,14 @@ const CommentList = ({ comments, updateVote, handleEditComment, handleRemoveComm
 				<div>Author: {comment.author}</div>
 				<div>Score: {comment.voteScore}</div>
 				<VoteOptions handle={(vote) => updateVote(comment.id, vote)} />
-				<button onClick={() => handleEditComment(comment.id)}>
+				<Button onClick={() => handleEditComment(comment.id)}>
 					<FaEdit size={20} />
 					Edit
-				</button>
-				<button onClick={() => handleRemoveComment(comment.id)}>
+				</Button>
+				<Button onClick={() => handleRemoveComment(comment.id)}>
 					<FaTrash size={20} />
 					Delete
-				</button>
+				</Button>
 			</li>	
 		))}
 	</ol>

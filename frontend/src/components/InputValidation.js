@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
 const InputValidation = ({ 
 	input, 
@@ -8,15 +9,16 @@ const InputValidation = ({
 	disabled, 
 	meta: { touched, error, warning } 
 }) => (
-	<div>
-		<label>{label}</label>
-		<div>
-			<input {...input} placeholder={label} type={type} disabled={disabled} />
-		</div>
-		<div>
-			{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-		</div>
-	</div>
+	<FormGroup>
+		<ControlLabel>{label}</ControlLabel>	
+		<FormControl 
+			{...input} 
+			placeholder={label} 
+			type={type} 
+			disabled={disabled}
+		/>
+		{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+	</FormGroup>
 )
 
 InputValidation.propTypes = {

@@ -9,59 +9,40 @@ export const SET_POST = 'SET_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 
 export const fetchAllPosts = (sortBy) => (dispatch) => {
-
 	PostsAPI.getAll().then((posts) => {
-
 		dispatch(getAllPosts(posts))
 		dispatch(sortPosts(sortBy))
-
 	})
-
 }
 
 export const fetchAllPostsByCategory = (category, sortBy) => (dispatch) => {
-
 	PostsAPI.getAllByCategory(category).then((posts) => {
-
 		dispatch(getAllPosts(posts))
 		dispatch(sortPosts(sortBy))
-
 	})
-
 }
 
 export const fetchPostById = (id) => (dispatch) => {
-
 	PostsAPI.get(id).then((post) => {
 		dispatch(getPostById(post))
 	})
-
 }
 
 export const fetchVotingAndSort = (postId, vote, sortBy) => (dispatch) => {
-
 	PostsAPI.voting(postId, vote).then((post) => {
-
 		dispatch(updatePost(post))
 		dispatch(sortPosts(sortBy))
-
 	})
-
 }
 
 export const fetchVoting = (postId, vote) => (dispatch) => {
-
 	PostsAPI.voting(postId, vote).then((post) => {
-
 		dispatch(updatePost(post))
 		dispatch(setPost(post))
-
 	})
-
 }
 
 export const fetchAddPost = (data, callback) => (dispatch) => {
-
 	const newPost = {
 		id: uuidv1(),
 		...data,
@@ -70,33 +51,20 @@ export const fetchAddPost = (data, callback) => (dispatch) => {
 	PostsAPI.insert(newPost).then((post) => {
 		callback()
 	})
-
 }
 
 export const fetchEditPost = (postId, data, callback) => (dispatch) => {
-	
 	const { title, body } = data
-	PostsAPI.update(postId, {
-		title,
-		body
-	}).then((post) => {
-		console.log(callback)
+	PostsAPI.update(postId, { title, body }).then((post) => {
 		callback()
 	})
-
 }
 
-export const fetchRemovePost = (postId) => (dispatch) => {
-
+export const fetchRemovePost = (postId, callback) => (dispatch) => {
 	PostsAPI.del(postId).then((post) => {
-		console.log(post)
+		callback()
 	})
-
 }
-
-
-
-
 
 export const sortPosts = (sortBy) => ({
 	type: SORT_ALL_POSTS,
@@ -105,7 +73,7 @@ export const sortPosts = (sortBy) => ({
 
 export const setPost = (post) => ({
 	type: SET_POST,
-	post	
+	post
 })
 
 const getAllPosts = (posts) => ({
@@ -127,4 +95,3 @@ const deletePost = (post) => ({
 	type: REMOVE_POST,
 	post
 })
-

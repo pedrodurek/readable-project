@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 // Actions
 import { fetchAllPostsByCategory, fetchVoting, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
@@ -8,6 +9,7 @@ import { fetchAllCategories } from '../actions/categories'
 import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
+import WrappedButton from '../components/WrappedButton'
 
 class Categories extends Component {
 
@@ -49,6 +51,9 @@ class Categories extends Component {
                     options={sortOptions}
                     handle={this.sortHandle}
                 />
+                <WrappedButton url="/post/new">
+                    New Post
+                </WrappedButton>
                 <PostsSummary 
                     posts={posts} 
                     updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import { Link } from 'react-router-dom'
+import { Button } from "react-bootstrap";
 import { formatDate } from '../utils/helper'
 import VoteOptions from '../components/VoteOptions'
+import WrappedButton from '../components/WrappedButton'
 
 const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 	<div>
@@ -14,16 +16,14 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
         <div className="post-num-comments">Number of comments: {post.commentCount}</div>
         <div className="post-vote-score">Score: {post.voteScore}</div>
         <div className="post-category">Category: {post.category}</div>
-		<button>
-			<Link to={`/post/${post.id}`}>
-				<FaEdit size={20} />
-				Edit
-			</Link>
-		</button>
-		<button onClick={() => handleRemovePost(post.id)}>
+		<WrappedButton url={`/post/${post.id}`}>
+			<FaEdit size={20} />
+			Edit
+		</WrappedButton>
+		<Button onClick={() => handleRemovePost(post.id)}>
 			<FaTrash size={20} />
 			Delete
-		</button>
+		</Button>
         <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
 	</div>
 )

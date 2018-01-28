@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, reduxForm, Form } from 'redux-form'
+import { Button } from "react-bootstrap";
 import PropTypes from 'prop-types'
 import Select from './Select'
 import InputValidation from './InputValidation'
@@ -46,7 +47,7 @@ const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
                 )}
             />
         </div>
-        <button type="submit">{newPost?'Create':'Save'}</button>
+        <Button type="submit">{newPost?'Create':'Save'}</Button>
     </Form>
 )
 

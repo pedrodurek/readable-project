@@ -9,7 +9,7 @@ import { fetchAllCategories } from '../actions/categories'
 import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
-
+import WrappedButton from "../components/WrappedButton";
 
 class Posts extends Component {
 
@@ -37,11 +37,9 @@ class Posts extends Component {
                     options={sortOptions}
                     handle={this.sortHandler}
                 />
-                <Link className="close-search" to="/post/new">
-                    <button>
-                        New Post
-                    </button>
-                </Link>
+                <WrappedButton url="/post/new">
+                    New Post
+                </WrappedButton>
                 <PostsSummary 
                     posts={posts}
                     updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
