@@ -1,14 +1,25 @@
-import { GET_ALL_CATEGORIES } from '../actions/categories'
+import { REQUEST_CATEGORIES, RECEIVE_CATEGORIES } from '../actions/categories'
 
-const categories = (state = [], action) => {
+const initialState = {
+	isFetching: false,
+	categories: []
+}
 
+const categories = (state = initialState, action) => {
 	switch (action.type) {
-		case GET_ALL_CATEGORIES:
-			return action.categories
+		case REQUEST_CATEGORIES:
+			return {
+				...state,
+				isFetching: action.isFetching
+			}
+		case RECEIVE_CATEGORIES:
+			return {
+				categories: action.categories,
+				isFetching: action.isFetching
+			}
 		default:
 			return state
 	}
-
 }
 
 export default categories

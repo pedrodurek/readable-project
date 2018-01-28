@@ -35,10 +35,6 @@ class Categories extends Component {
         this.props.sortPosts(sortBy)
     }
 
-    filterByCategory() {
-		
-    }
-
     render() {
 
         const { posts, sort, sortOptions, categories, fetchVoting } = this.props
@@ -66,7 +62,7 @@ class Categories extends Component {
 
 const mapStateToProps = (state) => ({
     posts: state.posts,
-    categories: state.categories,
+    categories: state.categories.categories,
     sort: state.sort.post,
     sortOptions: state.sortOptions
 })

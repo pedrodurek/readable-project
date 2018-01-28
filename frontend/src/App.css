@@ -1,0 +1,17 @@
+/* loading component */
+.parent-loading {
+    position: relative;
+}
+.loading-component {
+    text-align: center;
+    padding-top: 300px;
+    height: 100%;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    background-color: #fff;
+}

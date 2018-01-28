@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import Posts from './views/Posts'
 import Categories from './views/Categories'
 import Post from './views/Post'
 import CreatePost from './views/CreatePost'
 import EditPost from './views/EditPost'
+import Loading from './components/Loading'
+import './App.css'
 
 class App extends Component {
 
     render() {
     
+        const { isFetching } = this.props
         return (
             <div className="app">
+                <Loading show={isFetching} fullScreen={true} />
                 <Switch>
                     <Route exact path="/" component={Posts} />
                     <Route path="/post/new" component={CreatePost} />
@@ -26,5 +31,8 @@ class App extends Component {
 
 }
 
+const mapStateToProps = (state) => ({
+	isFetching: state.categories.isFetching
+})
 
-export default App
+export default connect(mapStateToProps)(App)
