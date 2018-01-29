@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // Actions
 import { fetchAllPosts, fetchVotingAndSort, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
@@ -37,7 +37,7 @@ class Posts extends Component {
                     options={sortOptions}
                     handle={this.sortHandler}
                 />
-                <WrappedButton url="/post/new">
+                <WrappedButton url={"/post/new"}>
                     New Post
                 </WrappedButton>
                 <PostsSummary 
@@ -66,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts))

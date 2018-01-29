@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Posts from './views/Posts'
 import Categories from './views/Categories'
 import Post from './views/Post'
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => ({
 	isFetching: state.categories.isFetching || state.comments.isFetching
 })
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
