@@ -34,11 +34,11 @@ export const voting = (commentId, option) =>
 	}).then(res => res.json())
 	.then(data => data)
 
-export const update = (commentId, post) =>
+export const update = (commentId, comment) =>
 	fetch(`${api}/comments/${commentId}`, {
 		method: 'PUT',
 		headers,
-		body: JSON.stringify(post)
+		body: JSON.stringify(comment)
 	}).then(res => res.json())
 	.then(data => data)
 

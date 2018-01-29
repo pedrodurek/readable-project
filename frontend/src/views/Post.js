@@ -11,6 +11,7 @@ import {
 	fetchCommentsByPost,
 	fetchVoting as fetchVotingComment,
 	fetchAddComment,
+	fetchEditComment,
 	fetchRemoveComment
 } from '../actions/comments'
 import PostDetails from '../components/PostDetails'
@@ -24,12 +25,11 @@ class Post extends Component {
 		showSimpleModal: false,
 		showConfirmModal: false,
 		isCommentAction: false,
-		comment: {},
+		comment: null,
 		handleRemove: () => {}
 	}
 
 	componentDidMount() {
-		console.log('teste')
 		const { match: { params: { post_id } } } = this.props
 		this.props.fetchPostById(post_id)
 		this.props.fetchCommentsByPost(post_id)
@@ -40,7 +40,7 @@ class Post extends Component {
 	}
 
 	closeSimpleModal = () => {
-		this.setState({ showSimpleModal: false })
+		this.setState({ showSimpleModal: false, comment: null })
 	}
 
 	openConfirmModal = (callback) => {
@@ -52,8 +52,12 @@ class Post extends Component {
 	}
 
 	handleComment = (data) => {
+		if (this.state.comment) {
+			this.props.fetchEditComment(this.state.comment.id, data)
+		} else {
+			this.props.fetchAddComment(this.props.post.id, data)
+		}
 		this.closeSimpleModal()
-		this.props.fetchAddComment(this.props.post.id, data)
 	}
 
 	handleEditComment = (commentId) => {
@@ -153,6 +157,7 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(fetchVotingComment(commentId, vote)),
 	submitComment: () => dispatch(submit('initializeCommentForm')),
 	fetchAddComment: (postId, data) => dispatch(fetchAddComment(postId, data)),
+	fetchEditComment: (commentId, comment) => dispatch(fetchEditComment(commentId, comment)),
 	fetchRemovePost: (postId, callback) =>
 		dispatch(fetchRemovePost(postId, callback)),
 	fetchRemoveComment: (commentId) => dispatch(fetchRemoveComment(commentId))

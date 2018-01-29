@@ -2,7 +2,7 @@ import {
 	REQUEST_COMMENTS,
 	RECEIVE_COMMENTS_BY_POST,
 	SORT_ALL_COMMENTS,
-	RECEIVE_UPDATE_COMMENT,
+	RECEIVE_EDIT_COMMENT,
 	RECEIVE_ADD_COMMENT,
 	RECEIVE_REMOVE_COMMENT
 } from '../actions/comments'
@@ -31,7 +31,7 @@ const comments = (state = initialState, action) => {
 				comments: comments.sort(sortBy(action.sortBy)),
 				...state
 			}
-		case RECEIVE_UPDATE_COMMENT:
+		case RECEIVE_EDIT_COMMENT:
 			return {
 				comments: state.comments
 					.filter((comment) => comment.id !== action.comment.id)
