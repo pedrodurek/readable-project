@@ -114,6 +114,7 @@ class Post extends Component {
 					<CommentForm
 						handleComment={this.handleComment}
 						initialValues={comment}
+						newComment={comment === null}
 					/>
 				</SimpleModal>
 				<ConfirmModal

@@ -36,8 +36,6 @@ export const fetchEditComment = (commentId, data) => (dispatch) => {
 		body,
 		timestamp: Date.now()
 	}
-	console.log(commentId)
-	console.log(editedComment)
 	dispatch(setIsFetching(true))
 	CommentsAPI.update(commentId, editedComment).then((comment) => {
 		dispatch(receiveEditComment(comment))

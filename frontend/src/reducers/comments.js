@@ -28,8 +28,8 @@ const comments = (state = initialState, action) => {
 		case SORT_ALL_COMMENTS:
 			let comments = [...state.comments]
 			return {
-				comments: comments.sort(sortBy(action.sortBy)),
-				...state
+				...state,
+				comments: comments.sort(sortBy(action.sortBy))
 			}
 		case RECEIVE_EDIT_COMMENT:
 			return {
