@@ -146,7 +146,7 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	post: state.post,
+	post: state.post.post,
 	comments: state.comments.comments
 })
 

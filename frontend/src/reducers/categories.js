@@ -1,8 +1,8 @@
-import { REQUEST_CATEGORIES, RECEIVE_CATEGORIES } from '../actions/categories'
+import { REQUEST_CATEGORIES, GET_ALL_CATEGORIES } from '../actions/categories'
 
 const initialState = {
-	isFetching: false,
-	categories: []
+	categories: [],
+	isFetching: false
 }
 
 const categories = (state = initialState, action) => {
@@ -12,7 +12,7 @@ const categories = (state = initialState, action) => {
 				...state,
 				isFetching: action.isFetching
 			}
-		case RECEIVE_CATEGORIES:
+		case GET_ALL_CATEGORIES:
 			return {
 				categories: action.categories,
 				isFetching: action.isFetching

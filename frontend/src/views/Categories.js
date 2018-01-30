@@ -61,7 +61,7 @@ class Categories extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    posts: state.posts,
+    posts: state.posts.posts,
     categories: state.categories.categories,
     sort: state.sort.post,
     sortOptions: state.sortOptions

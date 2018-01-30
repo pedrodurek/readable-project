@@ -1,36 +1,68 @@
 import sortBy from 'sort-by'
 import {
+	REQUEST_POSTS,
 	GET_ALL_POSTS,
-	UPDATE_POST, 
+	EDIT_POST, 
 	SORT_ALL_POSTS,
 	GET_POST_BY_ID,
 	SET_POST
 } from '../actions/posts'
 
+const initialState = {
+	posts: [],
+	isFetching: false
+}
 
-const posts = (state = [], action) => {
+const posts = (state = initialState, action) => {
 
 	switch (action.type) {
+		case REQUEST_POSTS:
+			return {
+				...state,
+				isFetching: action.isFetching
+			}
 		case GET_ALL_POSTS:
-			return action.posts
-		case UPDATE_POST:
-			return state.filter((post) => post.id !== action.post.id)
-				.concat(action.post)
+			return {
+				posts: action.posts,
+				isFetching: action.isFetching
+			}
+		case EDIT_POST:
+			return {
+				posts: state.posts.filter((post) => post.id !== action.post.id)
+					.concat(action.post),
+				isFetching: action.isFetching
+			}
 		case SORT_ALL_POSTS:
-			let posts = [...state]
-			return posts.sort(sortBy(action.sortBy.key))
+			let posts = [...state.posts]
+			return {
+				...state,
+				posts: posts.sort(sortBy(action.sortBy.key))
+			}
 		default:
 			return state
 	}
 
 }
 
-export const post = (state = {}, action) => {
+const _initialState = {
+	post: {},
+	isFetching: false
+}
+
+export const post = (state = _initialState, action) => {
 
 	switch (action.type) {
+		case REQUEST_POSTS:
+			return {
+				...state,
+				isFetching: action.isFetching
+			}
 		case SET_POST:
 		case GET_POST_BY_ID:
-			return action.post
+			return {
+				post: action.post,
+				isFetching: action.isFetching
+			}
 		default:
 			return state
 

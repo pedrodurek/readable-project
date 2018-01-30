@@ -39,7 +39,7 @@ class CreatePost extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    categories: state.categories
+    categories: state.categories.categories
 })
 
 const mapDispatchToProps = (dispatch) => ({

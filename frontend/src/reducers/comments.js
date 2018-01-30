@@ -1,16 +1,16 @@
 import {
 	REQUEST_COMMENTS,
-	RECEIVE_COMMENTS_BY_POST,
+	GET_COMMENTS_BY_POST,
 	SORT_ALL_COMMENTS,
-	RECEIVE_EDIT_COMMENT,
-	RECEIVE_ADD_COMMENT,
-	RECEIVE_REMOVE_COMMENT
+	EDIT_COMMENT,
+	ADD_COMMENT,
+	REMOVE_COMMENT
 } from '../actions/comments'
 import sortBy from 'sort-by'
 
 const initialState = {
-	isFetching: false,
-	comments: []
+	comments: [],
+	isFetching: false
 }
 
 const comments = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const comments = (state = initialState, action) => {
 				...state,
 				isFetching: action.isFetching
 			}
-		case RECEIVE_COMMENTS_BY_POST:
+		case GET_COMMENTS_BY_POST:
 			return {
 				comments: action.comments,
 				isFetching: action.isFetching
@@ -31,19 +31,19 @@ const comments = (state = initialState, action) => {
 				...state,
 				comments: comments.sort(sortBy(action.sortBy))
 			}
-		case RECEIVE_EDIT_COMMENT:
+		case EDIT_COMMENT:
 			return {
 				comments: state.comments
 					.filter((comment) => comment.id !== action.comment.id)
 					.concat(action.comment),
 				isFetching: action.isFetching
 			}
-		case RECEIVE_ADD_COMMENT:
+		case ADD_COMMENT:
 			return {
 				comments: [...state.comments, action.comment],
 				isFetching: action.isFetching
 			}
-		case RECEIVE_REMOVE_COMMENT:
+		case REMOVE_COMMENT:
 			return {
 				comments: state.comments.filter(
 					(comment) => comment.id !== action.commentId

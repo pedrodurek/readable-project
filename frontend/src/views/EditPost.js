@@ -44,8 +44,8 @@ class EditPost extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    post: state.post,
-    categories: state.categories
+    post: state.post.posts,
+    categories: state.categories.categories
 })
 
 const mapDispatchToProps = (dispatch) => ({
