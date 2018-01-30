@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { change } from 'redux-form'
 import { connect } from 'react-redux'
 import PostForm from '../components/PostForm'
 import { fetchAddPost } from '../actions/posts'
@@ -12,6 +13,7 @@ class CreatePost extends Component {
 
     handleAddPost = (data) => {
 
+        console.log(data)
         this.props.fetchAddPost(data, () => {
             this.props.history.push('/')
         })
@@ -30,6 +32,7 @@ class CreatePost extends Component {
                         text: category.name,
                         key: category.path
                     }))}
+                    initialValues={{category: ''}}
                     newPost={true}
                 />
             </div>
@@ -44,7 +47,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchAddPost: (post, callback) => dispatch(fetchAddPost(post, callback)),
-    fetchAllCategories: () => dispatch(fetchAllCategories())
+    fetchAllCategories: () => dispatch(fetchAllCategories((category) => 
+        dispatch(change('initializePostForm', 'category', category))
+    )),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)

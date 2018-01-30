@@ -50,8 +50,8 @@ export const fetchVoting = (postId, vote) => (dispatch) => {
 
 export const fetchAddPost = (data, callback) => (dispatch) => {
 	const newPost = {
-		id: uuidv1(),
 		...data,
+		id: uuidv1(),
 		timestamp: Date.now()
 	}
 	dispatch(setIsFetchingPost(true))

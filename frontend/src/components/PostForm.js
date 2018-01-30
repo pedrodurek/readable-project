@@ -36,10 +36,7 @@ const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
                 name="category"
                 component={({ input }) => (
                     <Select
-                        value={
-                            input.value || 
-                            ((categories.length > 0)?categories[0].text:'')
-                        }
+                        value={input.value}
                         options={categories}
                         handle={(category) => input.onChange(category.text)}
                         disabled={!newPost}
