@@ -31,8 +31,16 @@ class App extends Component {
 
 }
 
-const mapStateToProps = (state) => ({
-	isFetching: state.categories.isFetching || state.comments.isFetching
-})
+const mapStateToProps = (state) => {
+    console.log(state)
+    let x = {
+        isFetching: state.categories.isFetching || 
+            state.comments.isFetching || 
+            state.posts.isFetching ||
+            state.post.isFetching
+    }
+    console.log(x)
+    return x
+}
 
 export default withRouter(connect(mapStateToProps)(App))

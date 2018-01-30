@@ -1,6 +1,7 @@
 import sortBy from 'sort-by'
 import {
 	REQUEST_POSTS,
+	REQUEST_POST,
 	GET_ALL_POSTS,
 	EDIT_POST, 
 	SORT_ALL_POSTS,
@@ -52,7 +53,7 @@ const _initialState = {
 export const post = (state = _initialState, action) => {
 
 	switch (action.type) {
-		case REQUEST_POSTS:
+		case REQUEST_POST:
 			return {
 				...state,
 				isFetching: action.isFetching
