@@ -1,0 +1,13 @@
+.header-container {
+    background-color: #36d7b7;
+    color: #fff;
+    width: 100%;
+    padding: 15px 40px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.header-container h1 {
+    font-weight: bold;
+}
