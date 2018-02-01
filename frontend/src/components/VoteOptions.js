@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
-import FaSmileO from 'react-icons/lib/fa/smile-o'
-import FaFrownO from 'react-icons/lib/fa/frown-o'
+import FaThumbsUp from 'react-icons/lib/fa/thumbs-up'
+import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
+import '../styles/VoteOptions.css'
 
 const VoteOptions = ({ handle }) => (
 	<div className="post-vote">
-	    <Button onClick={() => handle('upVote')} className="icon-btn">
-	        <FaSmileO size={20} />
+	    <Button className="btn-icon" bsStyle="success" onClick={() => handle('upVote')}>
+	        <FaThumbsUp size={20} />
 	    </Button>
-	    <Button onClick={() => handle('downVote')} className="icon-btn">
-	        <FaFrownO size={20} />
+	    <Button className="btn-icon" bsStyle="danger" onClick={() => handle('downVote')}>
+	        <FaThumbsDown size={20} />
 	    </Button>                            
 	</div>
 )

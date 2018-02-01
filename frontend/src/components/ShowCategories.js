@@ -6,17 +6,19 @@ import WrappedButton from './WrappedButton'
 
 const ShowCategories = ({ categories }) => (
 	<div>
-		<h2>Categories</h2>
-		<ButtonToolbar>
-			<WrappedButton url={'/'}>
-				all
-			</WrappedButton>
-			{categories.map((category) => (
-				<WrappedButton key={category.name} url={`/${category.path}`}>
-					{category.name}
+		<h2 className="main-header">Categories</h2>
+		<div className="content">
+			<ButtonToolbar>
+				<WrappedButton url={'/'}>
+					all
 				</WrappedButton>
-			))}
-		</ButtonToolbar>
+				{categories.map((category) => (
+					<WrappedButton key={category.name} url={`/${category.path}`}>
+						{category.name}
+					</WrappedButton>
+				))}
+			</ButtonToolbar>
+		</div>
 	</div>
 )
 

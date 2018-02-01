@@ -13,7 +13,6 @@ class CreatePost extends Component {
 
     handleAddPost = (data) => {
 
-        console.log(data)
         this.props.fetchAddPost(data, () => {
             this.props.history.push('/')
         })

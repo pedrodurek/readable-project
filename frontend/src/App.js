@@ -20,13 +20,15 @@ class App extends Component {
             <div className="app">
                 {/* <Header title="Readable" /> */}
                 <Loading show={isFetching} fullScreen={true} />
-                <Switch>
-                    <Route exact path="/" component={Posts} />
-                    <Route path="/post/new" component={CreatePost} />
-                    <Route path="/post/:post_id" component={EditPost} />
-                    <Route exact path="/:category" component={Categories} />
-                    <Route path="/:category/:post_id" component={Post} />
-                </Switch>
+                <div className="main-container">
+                    <Switch>
+                        <Route exact path="/" component={Posts} />
+                        <Route path="/post/new" component={CreatePost} />
+                        <Route path="/post/:post_id" component={EditPost} />
+                        <Route exact path="/:category" component={Categories} />
+                        <Route path="/:category/:post_id" component={Post} />
+                    </Switch>
+                </div>
                 <Footer content="© 2018 - Readable - Pedro Durek"/>
             </div>
         )

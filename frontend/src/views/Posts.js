@@ -31,19 +31,20 @@ class Posts extends Component {
         return (
             <div>
                 <ShowCategories categories={categories} />
-                <h2>Posts</h2>
-                <Select
-                    value={sort.text}
-                    options={sortOptions}
-                    handle={this.sortHandler}
-                />
-                <WrappedButton url={"/post/new"}>
-                    New Post
-                </WrappedButton>
-                <PostsSummary 
-                    posts={posts}
-                    updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
-                />
+                <h2 className="main-header">Posts</h2>
+                <div className="content">
+                    <WrappedButton url={"/post/new"}>New Post</WrappedButton>
+                    <Select
+                        value={sort.text}
+                        options={sortOptions}
+                        handle={this.sortHandler}
+                        className="btn-select"
+                    />
+                    <PostsSummary 
+                        posts={posts}
+                        updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
+                    />
+                </div>
             </div>
         )
     }

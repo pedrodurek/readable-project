@@ -40,20 +40,22 @@ class Categories extends Component {
         const { posts, sort, sortOptions, categories, fetchVoting } = this.props
         return (
             <div>
-                <ShowCategories categories={categories} />
-                <h2>Posts</h2>
-                <Select
-                    value={sort.text}
-                    options={sortOptions}
-                    handle={this.sortHandle}
-                />
-                <WrappedButton url="/post/new">
-                    New Post
-                </WrappedButton>
-                <PostsSummary 
-                    posts={posts} 
-                    updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
-                />
+               <ShowCategories categories={categories} />
+               <h2 className="main-header">Posts</h2>
+               <div className="content">
+                    <Select
+                        value={sort.text}
+                        options={sortOptions}
+                        handle={this.sortHandle}
+                    />
+                    <WrappedButton url="/post/new">
+                        New Post
+                    </WrappedButton>
+                    <PostsSummary 
+                        posts={posts} 
+                        updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
+                    />
+                </div>
             </div>
         )
     }
