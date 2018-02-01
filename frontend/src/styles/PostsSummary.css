@@ -28,3 +28,8 @@
 .list-posts > .row > div {
     position: initial;
 }
+
+.post-status {
+    margin-top: 20px;
+    margin-left: 100px;
+}

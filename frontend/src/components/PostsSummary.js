@@ -21,9 +21,11 @@ const PostsSummary = ({ posts, updateVote }) => (
                                 <p><span className="post-author">Created by <b>{post.author}</b></span></p>
                             </Col>
                             <Col md={6} mdPull={6}>
-                                <p>Votes <Badge bsStyle="success">{post.voteScore}</Badge></p>
-                                <p>Answers <Badge bsStyle="success">{post.commentCount}</Badge></p>
-                                <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
+                                <div className="post-status">
+                                    <p><Badge bsStyle="success">{post.voteScore}</Badge> Votes</p>
+                                    <p><Badge bsStyle="success">{post.commentCount}</Badge> Answers</p>
+                                    <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
+                                </div>
                             </Col>
                         </Row>
                     ))}
