@@ -7,41 +7,66 @@ import VoteOptions from './VoteOptions'
 import '../styles/PostsSummary.css'
 
 const PostsSummary = ({ posts, updateVote }) => (
-    <div className="content">
-        <If condition={posts.length > 0}>
-            <Then>
-                <Grid className="list-posts">
-                    {posts.map((post) => (
-                        <Row key={post.id}>
-                            <Col md={6} mdPull={6}>
-                                <Link to={`/${post.category}/${post.id}`}>
-                                    <h3 className="post-title">{post.title}</h3>
-                                </Link>
-                                <p><Label>{post.category}</Label></p>
-                                <p><span className="post-author">Created by <b>{post.author}</b></span></p>
-                            </Col>
-                            <Col md={6} mdPull={6}>
-                                <div className="post-status">
-                                    <p><Badge bsStyle="success">{post.voteScore}</Badge> Votes</p>
-                                    <p><Badge bsStyle="success">{post.commentCount}</Badge> Answers</p>
-                                    <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
-                                </div>
-                            </Col>
-                        </Row>
-                    ))}
-                </Grid>
-            </Then>
-            <Else>
-                <p>There is not any post for this category.</p>
-            </Else>
-        </If>
-    </div>
+	<div className="content">
+		<If condition={posts.length > 0}>
+			<Then>
+				<Grid className="list-posts">
+					{posts.map((post) => (
+						<Row key={post.id}>
+							<Col md={6} mdPull={6}>
+								<Link to={`/${post.category}/${post.id}`}>
+									<h3 className="post-title">{post.title}</h3>
+								</Link>
+								<p>
+                                    <Link to={`/${post.category}`}>
+									    <Label>{post.category}</Label>
+                                    </Link>
+								</p>
+								<p>
+									<span className="post-author">
+										Created by <b>{post.author}</b>
+									</span>
+								</p>
+							</Col>
+							<Col md={6} mdPull={6}>
+								<div className="post-status">
+									<p>
+										<Badge
+											bsStyle={
+												post.voteScore >= 0
+													? 'success'
+													: 'danger'
+											}
+										>
+											{post.voteScore}
+										</Badge>
+										<span> votes</span>
+									</p>
+									<p>
+										<Badge>{post.commentCount}</Badge>
+										<span> answers</span>
+									</p>
+									<VoteOptions
+										handle={(vote) =>
+											updateVote(post.id, vote)
+										}
+									/>
+								</div>
+							</Col>
+						</Row>
+					))}
+				</Grid>
+			</Then>
+			<Else>
+				<p>There is not any post for this category.</p>
+			</Else>
+		</If>
+	</div>
 )
 
 PostsSummary.propTypes = {
 	posts: PropTypes.array.isRequired,
 	updateVote: PropTypes.func.isRequired
 }
-
 
 export default PostsSummary

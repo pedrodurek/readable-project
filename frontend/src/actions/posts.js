@@ -33,7 +33,7 @@ export const fetchPostById = (id) => (dispatch) => {
 }
 
 export const fetchVotingAndSort = (postId, vote, sortBy) => (dispatch) => {
-	dispatch(setIsFetchingPost(true))
+	dispatch(setIsFetchingPosts(true))
 	PostsAPI.voting(postId, vote).then((post) => {
 		dispatch(editPost(post))
 		dispatch(sortPosts(sortBy))
