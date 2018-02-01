@@ -3,17 +3,14 @@ import PropTypes from 'prop-types'
 import { ButtonToolbar } from 'react-bootstrap'
 import WrappedButton from './WrappedButton'
 
-
 const ShowCategories = ({ categories }) => (
 	<div>
 		<h2 className="main-header">Categories</h2>
 		<div className="content">
 			<ButtonToolbar>
-				<WrappedButton url={'/'}>
-					all
-				</WrappedButton>
+				<WrappedButton to={'/'}>all</WrappedButton>
 				{categories.map((category) => (
-					<WrappedButton key={category.name} url={`/${category.path}`}>
+					<WrappedButton key={category.name} to={`/${category.path}`}>
 						{category.name}
 					</WrappedButton>
 				))}

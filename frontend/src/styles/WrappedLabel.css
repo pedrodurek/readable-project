@@ -1,0 +1,12 @@
+.label-dark-link {
+    background-color: #777;
+    color: #fff;
+}
+
+.label-dark-link:visited,
+.label-dark-link:focus,
+.label-dark-link:active,
+.label-dark-link:hover {
+    background-color: #5c5a5a;
+    color: #fff;
+}

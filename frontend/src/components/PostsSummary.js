@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Label, Badge, Grid, Row, Col } from 'react-bootstrap'
 import { If, Then, Else } from 'react-if'
 import VoteOptions from './VoteOptions'
+import WrappedLabel from './WrappedLabel'
 import '../styles/PostsSummary.css'
 
 const PostsSummary = ({ posts, updateVote }) => (
@@ -18,9 +19,9 @@ const PostsSummary = ({ posts, updateVote }) => (
 									<h3 className="post-title">{post.title}</h3>
 								</Link>
 								<p>
-                                    <Link to={`/${post.category}`}>
-									    <Label>{post.category}</Label>
-                                    </Link>
+									<WrappedLabel to={`/${post.category}`}>
+										{post.category}
+									</WrappedLabel>
 								</p>
 								<p>
 									<span className="post-author">
@@ -58,7 +59,7 @@ const PostsSummary = ({ posts, updateVote }) => (
 				</Grid>
 			</Then>
 			<Else>
-				<p>There is not any post for this category.</p>
+				<h4>There is not any post for this category</h4>
 			</Else>
 		</If>
 	</div>

@@ -9,62 +9,60 @@ import { fetchAllCategories } from '../actions/categories'
 import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
-import WrappedButton from "../components/WrappedButton";
+import WrappedButton from '../components/WrappedButton'
 
 class Posts extends Component {
+	componentDidMount() {
+		this.props.fetchAllPosts(this.props.sort)
+		this.props.fetchAllCategories()
+	}
 
-    componentDidMount() {
+	sortHandler = (sortBy) => {
+		this.props.sortPosts(sortBy)
+	}
 
-        this.props.fetchAllPosts(this.props.sort)
-        this.props.fetchAllCategories()
-
-    }
-
-    sortHandler = (sortBy) => {
-        this.props.sortPosts(sortBy)
-    }
-
-
-    render() {
-
-        const { posts, sort, sortOptions, categories, fetchVoting } = this.props
-        return (
-            <div>
-                <ShowCategories categories={categories} />
-                <h2 className="main-header">Posts</h2>
-                <div className="content">
-                    <WrappedButton url={"/post/new"}>New Post</WrappedButton>
-                    <Select
-                        value={sort.text}
-                        options={sortOptions}
-                        handle={this.sortHandler}
-                        className="btn-select"
-                    />
-                    <PostsSummary 
-                        posts={posts}
-                        updateVote={(postId, vote) => fetchVoting(postId, vote, sort)}
-                    />
-                </div>
-            </div>
-        )
-    }
+	render() {
+		const { posts, sort, sortOptions, categories, fetchVoting } = this.props
+		return (
+			<div>
+				<ShowCategories categories={categories} />
+				<h2 className="main-header">Posts</h2>
+				<div className="content">
+					<WrappedButton to={'/post/new'}>New Post</WrappedButton>
+					<Select
+						value={sort.text}
+						options={sortOptions}
+						handle={this.sortHandler}
+						className="btn-select"
+					/>
+					<PostsSummary
+						posts={posts}
+						updateVote={(postId, vote) =>
+							fetchVoting(postId, vote, sort)
+						}
+					/>
+				</div>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = (state) => ({
-    posts: state.posts.posts,
-    categories: state.categories.categories,
-    sort: state.sort.post,
-    sortOptions: state.sortOptions
+	posts: state.posts.posts,
+	categories: state.categories.categories,
+	sort: state.sort.post,
+	sortOptions: state.sortOptions
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
-    fetchVoting: (postId, vote, sortBy) => dispatch(fetchVotingAndSort(postId, vote, sortBy)),
-    fetchAllCategories: () => dispatch(fetchAllCategories()),
-    sortPosts: (sortBy) => { 
-        dispatch(setSort('post', sortBy))
-        dispatch(sortPosts(sortBy))
-    }
+	fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
+	fetchVoting: (postId, vote, sortBy) =>
+		dispatch(fetchVotingAndSort(postId, vote, sortBy)),
+	fetchAllCategories: () => dispatch(fetchAllCategories()),
+	sortPosts: (sortBy) => {
+		dispatch(setSort('post', sortBy))
+		dispatch(sortPosts(sortBy))
+	}
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts))

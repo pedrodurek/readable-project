@@ -1,19 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Label } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import '../styles/WrappedLabel.css'
 
-const WrappedButton = ({ to, children }) => (
+const WrappedLabel = ({ to, children }) => (
 	<Link to={to}>
-		<Button bsStyle="primary">
+		<Label bsStyle="dark-link">
 			{children}
-		</Button>
+		</Label>
 	</Link>
 )
 
-WrappedButton.propTypes = {
+WrappedLabel.propTypes = {
 	to: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired
 }
 
-export default WrappedButton
+export default WrappedLabel
