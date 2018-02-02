@@ -16,7 +16,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
         <div className="post-num-comments">Number of comments: {post.commentCount}</div>
         <div className="post-vote-score">Score: {post.voteScore}</div>
         <div className="post-category">Category: {post.category}</div>
-		<WrappedButton url={`/post/${post.id}`}>
+		<WrappedButton to={`/post/${post.id}`}>
 			<FaEdit size={20} />
 			Edit
 		</WrappedButton>
