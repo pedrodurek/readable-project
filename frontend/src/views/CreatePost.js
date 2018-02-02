@@ -23,17 +23,19 @@ class CreatePost extends Component {
 
         const { categories } = this.props
         return (
-            <div>
-                <h2>New Post</h2>
-                <PostForm
-                    handlePost={this.handleAddPost}
-                    categories={categories.map((category) => ({
-                        text: category.name,
-                        key: category.path
-                    }))}
-                    initialValues={{category: ''}}
-                    newPost={true}
-                />
+            <div className="content">
+                <h2 className="main-header">New Post</h2>
+                <div className="content">
+                    <PostForm
+                        handlePost={this.handleAddPost}
+                        categories={categories.map((category) => ({
+                            text: category.name,
+                            key: category.path
+                        }))}
+                        initialValues={{category: ''}}
+                        newPost={true}
+                    />
+                </div>
             </div>
         )
 
