@@ -17,7 +17,7 @@ class Posts extends Component {
 		this.props.fetchAllCategories()
 	}
 
-	sortHandler = (sortBy) => {
+	sortHandle = (sortBy) => {
 		this.props.sortPosts(sortBy)
 	}
 
@@ -32,7 +32,7 @@ class Posts extends Component {
 					<Select
 						value={sort.text}
 						options={sortOptions}
-						handle={this.sortHandler}
+						handle={this.sortHandle}
 						className="btn-select"
 					/>
 					<PostsSummary

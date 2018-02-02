@@ -45,7 +45,7 @@ class Categories extends Component {
 					<Select
 						value={sort.text}
 						options={sortOptions}
-						handle={this.sortHandler}
+						handle={this.sortHandle}
 						className="btn-select"
 					/>
 					<PostsSummary
