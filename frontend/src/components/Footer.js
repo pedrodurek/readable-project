@@ -4,7 +4,7 @@ import '../styles/Footer.css'
 
 const Footer = ({ content }) => (
     <div className="footer-container">
-        <scan>{content}</scan>
+        <span>{content}</span>
     </div>
 )
 

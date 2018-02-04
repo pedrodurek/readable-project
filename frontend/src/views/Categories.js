@@ -20,6 +20,7 @@ class Categories extends Component {
 		const { match: { params: { category } }, sort } = this.props
 		this.props.fetchAllPostsByCategory(category, sort)
 		this.props.fetchAllCategories()
+		window.scrollTo(0, 0)
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -46,7 +47,7 @@ class Categories extends Component {
 						value={sort.text}
 						options={sortOptions}
 						handle={this.sortHandle}
-						className="btn-select"
+						className="select-sort"
 					/>
 					<PostsSummary
 						posts={posts}

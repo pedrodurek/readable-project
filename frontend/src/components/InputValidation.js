@@ -1,23 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 
-const InputValidation = ({ 
-	input, 
-	label, 
-	type, 
-	disabled, 
-	meta: { touched, error, warning } 
+const InputValidation = ({
+	input,
+	label,
+	type,
+	disabled,
+	meta: { touched, error, warning }
 }) => (
 	<FormGroup>
-		<ControlLabel>{label}</ControlLabel>	
-		<FormControl 
-			{...input} 
-			placeholder={label} 
-			type={type} 
+		<ControlLabel>{label}</ControlLabel>
+		<FormControl
+			{...input}
+			placeholder={label}
+			type={type}
 			disabled={disabled}
+			className={touched && error && 'input-danger'}
 		/>
-		{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+		{touched && error && <span className="span-danger">{error}</span>}
 	</FormGroup>
 )
 

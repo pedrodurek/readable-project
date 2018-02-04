@@ -7,7 +7,7 @@ const ShowCategories = ({ categories }) => (
 	<div>
 		<h2 className="main-header">Categories</h2>
 		<div className="content">
-			<ButtonToolbar>
+			<ButtonToolbar className="btn-group">
 				<WrappedButton to={'/'}>all</WrappedButton>
 				{categories.map((category) => (
 					<WrappedButton key={category.name} to={`/${category.path}`}>

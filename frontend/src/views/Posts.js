@@ -15,6 +15,7 @@ class Posts extends Component {
 	componentDidMount() {
 		this.props.fetchAllPosts(this.props.sort)
 		this.props.fetchAllCategories()
+		window.scrollTo(0, 0)
 	}
 
 	sortHandle = (sortBy) => {
@@ -33,7 +34,7 @@ class Posts extends Component {
 						value={sort.text}
 						options={sortOptions}
 						handle={this.sortHandle}
-						className="btn-select"
+						className="select-sort"
 					/>
 					<PostsSummary
 						posts={posts}

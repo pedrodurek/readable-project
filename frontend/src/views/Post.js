@@ -30,10 +30,10 @@ class Post extends Component {
 	}
 
 	componentDidMount() {
-		console.log('Teste')
 		const { match: { params: { post_id } } } = this.props
 		this.props.fetchPostById(post_id)
 		this.props.fetchCommentsByPost(post_id)
+		window.scrollTo(0, 0)
 	}
 
 	openSimpleModal = () => {

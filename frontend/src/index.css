@@ -19,11 +19,14 @@ body {
 	box-sizing: inherit;
 }
 
+.btn-group button {
+	margin-left: 5px;
+}
+
 .btn-primary {
 	background-color: #36d7b7;
 	border-color: #46c5ac;
 	color: #fff;
-	margin-left: 5px;
 }
 
 .btn-primary:active,
@@ -43,6 +46,10 @@ body {
 	margin: 140px 250px 50px 250px;
 }
 
+.small-container {
+	margin: 0 100px;
+}
+
 .main-header {
 	color: #3f3844;
 	padding-bottom: 10px;
@@ -50,11 +57,21 @@ body {
 	font-weight: bold;
 }
 
-.btn-select {
+.select-sort {
 	float: right;
 }
 
-.btn-select > button {
+.select > button {
+	width: 100px;
+}
+
+.select-sort .caret,
+.select .caret {
+	float: right;
+	margin-top: 8px;
+}
+
+.select-sort > button {
 	width: 190px;
 }
 
@@ -68,4 +85,16 @@ body {
 
 .badge-danger {
 	background-color: #d9534f;
+}
+
+.input-danger {
+	border-color: #d9534f !important;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(217,83,79,.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(217,83,79,.6) !important;
+}
+
+.span-danger {
+	color: #d9534f;
+	margin-top: 3px;
+	display: inline-block;
 }
