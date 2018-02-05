@@ -3,28 +3,65 @@ import PropTypes from 'prop-types'
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import { Link } from 'react-router-dom'
-import { Button } from "react-bootstrap";
+import { Button, Label, Badge, Grid, Row, Col } from 'react-bootstrap'
 import { formatDate } from '../utils/helper'
 import VoteOptions from '../components/VoteOptions'
 import WrappedButton from '../components/WrappedButton'
+import WrappedLabel from './WrappedLabel'
 
 const PostDetails = ({ post, updateVote, handleRemovePost }) => (
-	<div>
-        <div className="post-title">{post.title}</div>
-        <div className="post-author">Author: {post.author}</div>
-        <div className="post-author">Date: {formatDate(post.timestamp)}</div>
-        <div className="post-num-comments">Number of comments: {post.commentCount}</div>
-        <div className="post-vote-score">Score: {post.voteScore}</div>
-        <div className="post-category">Category: {post.category}</div>
-		<WrappedButton to={`/post/${post.id}`}>
-			<FaEdit size={20} />
-			Edit
-		</WrappedButton>
-		<Button onClick={() => handleRemovePost(post.id)}>
-			<FaTrash size={20} />
-			Delete
-		</Button>
-        <VoteOptions handle={(vote) => updateVote(post.id, vote)} />
+	<div className="list-posts">
+		<h2 className="main-header">{post.title}</h2>
+		<Row className="content">
+			<Col md={6} mdPull={6}>
+				<div>{post.body}</div>
+				<p>
+					<WrappedLabel to={`/${post.category}`}>
+						{post.category}
+					</WrappedLabel>
+				</p>
+				<p>
+					<span className="post-author">
+						Created by <b>{post.author}</b> at {formatDate(post.timestamp)}
+					</span>
+				</p>
+				<div className="btn-group">
+					<WrappedButton to={`/post/${post.id}`} size="xsmall">
+						<FaEdit size={20} />
+						Edit
+					</WrappedButton>
+					<Button bsSize="xsmall" onClick={() => handleRemovePost(post.id)}>
+						<FaTrash size={20} />
+						Delete
+					</Button>
+				</div>
+			</Col>
+			<Col md={6} mdPull={6}>
+				<div className="post-status">
+					<p>
+						<Badge
+							bsStyle={
+								post.voteScore >= 0
+									? 'success'
+									: 'danger'
+							}
+						>
+							{post.voteScore}
+						</Badge>
+						<span> votes</span>
+					</p>
+					<p>
+						<Badge>{post.commentCount}</Badge>
+						<span> answers</span>
+					</p>
+					<VoteOptions
+						handle={(vote) =>
+							updateVote(post.id, vote)
+						}
+					/>
+				</div>
+			</Col>
+		</Row>
 	</div>
 )
 

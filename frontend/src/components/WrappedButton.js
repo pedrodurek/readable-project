@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const WrappedButton = ({ to, children }) => (
+const WrappedButton = ({ to, children, size }) => (
 	<Link to={to}>
-		<Button bsStyle="primary">
+		<Button bsStyle="primary" bsSize={size}>
 			{children}
 		</Button>
 	</Link>

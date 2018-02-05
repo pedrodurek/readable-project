@@ -18,7 +18,7 @@ class App extends Component {
         const { isFetching } = this.props
         return (
             <div className="app">
-                <Header title="Readable" />
+                {/* <Header title="Readable" /> */}
                 <Loading show={isFetching} fullScreen={true} />
                 <div className="main-container">
                     <Switch>

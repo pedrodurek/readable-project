@@ -132,6 +132,7 @@ class Post extends Component {
 					updateVote={fetchVotingPost}
 					handleRemovePost={this.handleRemovePost}
 				/>
+				<h2 className="main-header">Comments</h2>
 				<Button bsStyle="primary" onClick={this.openSimpleModal}>
 					Create Comment
 				</Button>
