@@ -21,6 +21,8 @@ body {
 
 .btn-group button {
 	margin-right: 5px;
+	border-radius: 3px !important;
+	float: none !important;
 }
 
 .btn-primary {
@@ -97,4 +99,36 @@ body {
 	color: #d9534f;
 	margin-top: 3px;
 	display: inline-block;
+}
+
+.list-row {
+	width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.list-row > .row {
+	padding-bottom: 30px;
+	padding-top: 20px;
+	border-bottom: 1px solid #E5E7E9;
+}
+
+.list-row > .row > div {
+    position: initial;
+}
+
+.list-row > .row > div:last-child {
+    padding-left: 115px;
+}
+
+.list-row > .row:last-child {
+    border-bottom: 0;
+}
+
+.mg-t-10 {
+	margin-top: 10px;
+}
+
+.mg-t-20 {
+	margin-top: 20px;
 }

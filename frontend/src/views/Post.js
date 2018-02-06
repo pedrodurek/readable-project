@@ -134,7 +134,7 @@ class Post extends Component {
 				/>
 				<h2 className="main-header">Comments</h2>
 				<Button bsStyle="primary" onClick={this.openSimpleModal}>
-					Create Comment
+					Add Comment
 				</Button>
 				<CommentList
 					comments={comments}
