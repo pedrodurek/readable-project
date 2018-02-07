@@ -16,7 +16,7 @@ export const fetchCommentsByPost = (postId) => (dispatch) => {
 	})
 }
 
-export const fetchAddComment = (postId, data) => (dispatch) => {
+export const fetchAddComment = (postId, data, callback) => (dispatch) => {
 	const newComment = {
 		id: uuidv1(),
 		...data,
@@ -27,6 +27,7 @@ export const fetchAddComment = (postId, data) => (dispatch) => {
 	CommentsAPI.insert(newComment).then((comment) => {
 		dispatch(addComment(comment))
 		dispatch(sortComments('-voteScore'))
+		callback()
 	})
 }
 

@@ -56,7 +56,10 @@ class Post extends Component {
 		if (this.state.comment) {
 			this.props.fetchEditComment(this.state.comment.id, data)
 		} else {
-			this.props.fetchAddComment(this.props.post.id, data)
+			this.props.fetchAddComment(this.props.post.id, data, () => {
+				const { match: { params: { post_id } } } = this.props
+				this.props.fetchPostById(post_id)
+			})
 		}
 		this.closeSimpleModal()
 	}
@@ -161,7 +164,7 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchVotingComment: (commentId, vote) =>
 		dispatch(fetchVotingComment(commentId, vote)),
 	submitComment: () => dispatch(submit('initializeCommentForm')),
-	fetchAddComment: (postId, data) => dispatch(fetchAddComment(postId, data)),
+	fetchAddComment: (postId, data, callback) => dispatch(fetchAddComment(postId, data, callback)),
 	fetchEditComment: (commentId, comment) => dispatch(fetchEditComment(commentId, comment)),
 	fetchRemovePost: (postId, callback) =>
 		dispatch(fetchRemovePost(postId, callback)),
