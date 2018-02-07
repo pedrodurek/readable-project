@@ -20,21 +20,21 @@ class EditPost extends Component {
 	}
 
 	render() {
-        const { post, categories } = this.props
-        {console.log(post)
-        }
+		const { post, categories } = this.props
 		return (
 			<div className="small-container">
 				<h2 className="main-header">Edit Post</h2>
-				<PostForm
-					handlePost={this.handleEditPost}
-					categories={categories.map((category) => ({
-						text: category.name,
-						key: category.path
-					}))}
-					initialValues={post}
-					newPost={false}
-				/>
+				<div className="content">
+					<PostForm
+						handlePost={this.handleEditPost}
+						categories={categories.map((category) => ({
+							text: category.name,
+							key: category.path
+						}))}
+						initialValues={post}
+						newPost={false}
+					/>
+				</div>
 			</div>
 		)
 	}

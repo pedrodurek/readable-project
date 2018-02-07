@@ -18,7 +18,12 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 						{post.category}
 					</WrappedLabel>
 				</p>
-				<div className="btn-group mg-t-10">
+				<p>
+					<span className="post-author">
+						Created by <b>{post.author}</b> at {formatDate(post.timestamp)}
+					</span>
+				</p>
+				<div className="btn-group">
 					<WrappedButton to={`/post/${post.id}`} size="xsmall" style="default">
 						Edit
 					</WrappedButton>
@@ -26,11 +31,6 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 						Delete
 					</Button>
 				</div>
-				<p>
-					<span className="post-author">
-						Created by <b>{post.author}</b> at {formatDate(post.timestamp)}
-					</span>
-				</p>
 			</Col>
 			<Col md={6} mdPull={6}>
 				<p>

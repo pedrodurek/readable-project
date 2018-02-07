@@ -5,7 +5,12 @@ import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import VoteOptions from './VoteOptions'
 
-const CommentList = ({ comments, updateVote, handleEditComment, handleRemoveComment }) => (
+const CommentList = ({
+	comments,
+	updateVote,
+	handleEditComment,
+	handleRemoveComment
+}) => (
 	<Grid className="list-row">
 		{comments.map((comment) => (
 			<Row key={comment.id}>
@@ -16,14 +21,22 @@ const CommentList = ({ comments, updateVote, handleEditComment, handleRemoveComm
 							Created by <b>{comment.author}</b>
 						</span>
 					</p>
-					<Button onClick={() => handleEditComment(comment.id)}>
-						<FaEdit size={20} />
-						Edit
-					</Button>
-					<Button onClick={() => handleRemoveComment(comment.id)}>
-						<FaTrash size={20} />
-						Delete
-					</Button>
+					<div className="btn-group">
+						<Button
+							onClick={() => handleEditComment(comment.id)}
+							bsSize="xsmall"
+							bsStyle="default"
+						>
+							Edit
+						</Button>
+						<Button
+							onClick={() => handleRemoveComment(comment.id)}
+							bsSize="xsmall"
+							bsStyle="danger"
+						>
+							Delete
+						</Button>
+					</div>
 				</Col>
 				<Col md={6} mdPull={6}>
 					<div>
@@ -31,18 +44,20 @@ const CommentList = ({ comments, updateVote, handleEditComment, handleRemoveComm
 							<Badge
 								bsStyle={
 									comment.voteScore >= 0
-									? 'success'
+										? 'success'
 										: 'danger'
-									}
+								}
 							>
 								{comment.voteScore}
 							</Badge>
 							<span> votes</span>
 						</p>
-						<VoteOptions handle={(vote) => updateVote(comment.id, vote)} />
+						<VoteOptions
+							handle={(vote) => updateVote(comment.id, vote)}
+						/>
 					</div>
 				</Col>
-			</Row>	
+			</Row>
 		))}
 	</Grid>
 )

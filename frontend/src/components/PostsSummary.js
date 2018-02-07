@@ -11,7 +11,7 @@ const PostsSummary = ({ posts, updateVote }) => (
 	<div className="content">
 		<If condition={posts.length > 0}>
 			<Then>
-				<Grid className="list-posts">
+				<Grid className="list-row">
 					{posts.map((post) => (
 						<Row key={post.id}>
 							<Col md={6} mdPull={6}>

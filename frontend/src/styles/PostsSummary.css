@@ -1,35 +1,8 @@
-
-.list-posts {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.list-posts > .row {
-    padding-bottom: 30px;
-	border-bottom: 1px solid #E5E7E9;
-}
-
-.list-posts > .row:last-child {
-    border-bottom: 0;
-}
-
-.list-posts a:active,
-.list-posts a:hover,
-.list-posts a {
-    text-decoration: none;
-}
-
 .post-author {
     color: #848d95;
     font-size: 12px;
 }
 
-.list-posts > .row > div {
-    position: initial;
-}
-
-.post-status {
-    margin-top: 20px;
-    margin-left: 100px;
+.post-title {
+    margin-top: 0;
 }

@@ -133,15 +133,17 @@ class Post extends Component {
 					handleRemovePost={this.handleRemovePost}
 				/>
 				<h2 className="main-header">Comments</h2>
-				<Button bsStyle="primary" onClick={this.openSimpleModal}>
-					Add Comment
-				</Button>
-				<CommentList
-					comments={comments}
-					updateVote={fetchVotingComment}
-					handleEditComment={this.handleEditComment}
-					handleRemoveComment={this.handleRemoveComment}
-				/>
+				<div className="content">
+					<Button bsStyle="primary" onClick={this.openSimpleModal}>
+						New Comment
+					</Button>
+					<CommentList
+						comments={comments}
+						updateVote={fetchVotingComment}
+						handleEditComment={this.handleEditComment}
+						handleRemoveComment={this.handleRemoveComment}
+					/>
+				</div>
 			</div>
 		)
 	}

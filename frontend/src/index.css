@@ -125,10 +125,12 @@ body {
     border-bottom: 0;
 }
 
-.mg-t-10 {
-	margin-top: 10px;
+.list-row a:active,
+.list-row a:hover,
+.list-row a {
+    text-decoration: none;
 }
 
-.mg-t-20 {
-	margin-top: 20px;
+.list-row .badge {
+	margin-left: 10px;
 }

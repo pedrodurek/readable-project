@@ -13,9 +13,9 @@ const ConfirmModal = ({
 }) => (
 	<Modal bsSize="small" show={showModal}>
 		<Modal.Body>
-			<h4>{title}</h4>
+			<h4><b>{title}</b></h4>
 			<p>{message}</p>
-			<div>
+			<div className="btn-group">
 				<Button onClick={onCancel}>{cancelLabel}</Button>
 				<Button bsStyle="primary" onClick={onConfirm}>
 					{confirmLabel}

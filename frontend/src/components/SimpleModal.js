@@ -14,7 +14,7 @@ const SimpleModal = ({
 	<div>
 		<Modal show={showModal} onHide={onCancel}>
 			<Modal.Header closeButton>
-				<Modal.Title>{title}</Modal.Title>
+				<Modal.Title><b>{title}</b></Modal.Title>
 			</Modal.Header>
 			<Modal.Body>{children}</Modal.Body>
 			<Modal.Footer>
