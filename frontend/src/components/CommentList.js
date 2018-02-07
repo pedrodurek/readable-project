@@ -15,7 +15,7 @@ const CommentList = ({
 		{comments.map((comment) => (
 			<Row key={comment.id}>
 				<Col md={6} mdPull={6}>
-					<div>{comment.body}</div>
+					<h5>{comment.body}</h5>
 					<p>
 						<span className="post-author">
 							Created by <b>{comment.author}</b>

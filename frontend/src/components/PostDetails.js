@@ -12,7 +12,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 		<h2 className="main-header">{post.title}</h2>
 		<Row>
 			<Col md={6} mdPull={6}>
-				<div>{post.body}</div>
+				<h5>{post.body}</h5>
 				<p>
 					<WrappedLabel to={`/${post.category}`}>
 						{post.category}
