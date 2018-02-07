@@ -18,14 +18,14 @@ class App extends Component {
         const { isFetching } = this.props
         return (
             <div className="app">
-                <Header title="Readable" />
+                {/* <Header title="Readable" /> */}
                 <Loading show={isFetching} fullScreen={true} />
                 <div className="main-container">
                     <Switch>
                         <Route exact path="/" component={Posts} />
+                        <Route exact path="/:category" component={Posts} />
                         <Route path="/post/new" component={CreatePost} />
                         <Route path="/post/:post_id" component={EditPost} />
-                        <Route exact path="/:category" component={Categories} />
                         <Route path="/:category/:post_id" component={Post} />
                     </Switch>
                 </div>

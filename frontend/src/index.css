@@ -21,6 +21,8 @@ body {
 
 h5 {
 	font-size: 16px;
+	margin: 0;
+    line-height: 1.4;
 }
 
 .btn-group button {

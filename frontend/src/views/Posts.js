@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 // Actions
-import { fetchAllPosts, fetchVotingAndSort, sortPosts } from '../actions/posts'
+import { fetchAllPosts, fetchAllPostsByCategory, fetchVotingAndSort, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
 // Components
@@ -13,9 +13,26 @@ import WrappedButton from '../components/WrappedButton'
 
 class Posts extends Component {
 	componentDidMount() {
-		this.props.fetchAllPosts(this.props.sort)
+		const { match: { params: { category } }, sort } = this.props
+		if (category) {
+			this.props.fetchAllPostsByCategory(category, sort)
+		} else {			
+			this.props.fetchAllPosts(this.props.sort)
+		}
 		this.props.fetchAllCategories()
 		window.scrollTo(0, 0)
+	}
+
+	componentWillReceiveProps(newProps) {
+		const { match: { params: { category } }, sort } = this.props
+		const { match: { params } } = newProps
+		console.log(category)
+		console.log(params.category)
+		if (params.category && (category !== params.category)) {
+			this.props.fetchAllPostsByCategory(params.category, sort)
+		} else if (category && !params.category) {
+			this.props.fetchAllPosts(this.props.sort)
+		}
 	}
 
 	sortHandle = (sortBy) => {
@@ -57,6 +74,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
+	fetchAllPostsByCategory: (category, sortBy) =>
+		dispatch(fetchAllPostsByCategory(category, sortBy)),
 	fetchVoting: (postId, vote, sortBy) =>
 		dispatch(fetchVotingAndSort(postId, vote, sortBy)),
 	fetchAllCategories: () => dispatch(fetchAllCategories()),
