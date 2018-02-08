@@ -6,7 +6,7 @@ import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import '../styles/VoteOptions.css'
 
 const VoteOptions = ({ handle }) => (
-	<div className="post-vote">
+	<div>
 	    <Button className="btn-icon" bsStyle="success" onClick={() => handle('upVote')}>
 	        <FaThumbsUp size={20} />
 	    </Button>

@@ -15,7 +15,7 @@ const CommentList = ({
 				<Col md={6} mdPull={6}>
 					<h5>{comment.body}</h5>
 					<p>
-						<span className="post-author">
+						<span className="author-details">
 							Created by <b>{comment.author}</b>
 						</span>
 					</p>
@@ -37,23 +37,22 @@ const CommentList = ({
 					</div>
 				</Col>
 				<Col md={6} mdPull={6}>
-					<div>
-						<p>
-							<Badge
-								bsStyle={
-									comment.voteScore >= 0
-										? 'success'
-										: 'danger'
-								}
-							>
-								{comment.voteScore}
-							</Badge>
-							<span> votes</span>
-						</p>
-						<VoteOptions
-							handle={(vote) => updateVote(comment.id, vote)}
-						/>
-					</div>
+					<p>
+						<Badge
+							bsStyle={
+								comment.voteScore >= 0
+									? 'success'
+									: 'danger'
+							}
+						>
+							{comment.voteScore}
+						</Badge>
+						<span> votes</span>
+					</p>
+					<VoteOptions
+						handle={(vote) => updateVote(comment.id, vote)}
+					/>
+
 				</Col>
 			</Row>
 		))}

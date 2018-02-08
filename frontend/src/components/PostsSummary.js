@@ -24,35 +24,33 @@ const PostsSummary = ({ posts, updateVote }) => (
 									</WrappedLabel>
 								</p>
 								<p>
-									<span className="post-author">
+									<span className="author-details">
 										Created by <b>{post.author}</b>
 									</span>
 								</p>
 							</Col>
 							<Col md={6} mdPull={6}>
-								<div className="post-status">
-									<p>
-										<Badge
-											bsStyle={
-												post.voteScore >= 0
-													? 'success'
-													: 'danger'
-											}
-										>
-											{post.voteScore}
-										</Badge>
-										<span> votes</span>
-									</p>
-									<p>
-										<Badge>{post.commentCount}</Badge>
-										<span> answers</span>
-									</p>
-									<VoteOptions
-										handle={(vote) =>
-											updateVote(post.id, vote)
+								<p>
+									<Badge
+										bsStyle={
+											post.voteScore >= 0
+												? 'success'
+												: 'danger'
 										}
-									/>
-								</div>
+									>
+										{post.voteScore}
+									</Badge>
+									<span> votes</span>
+								</p>
+								<p>
+									<Badge>{post.commentCount}</Badge>
+									<span> answers</span>
+								</p>
+								<VoteOptions
+									handle={(vote) =>
+										updateVote(post.id, vote)
+									}
+								/>
 							</Col>
 						</Row>
 					))}

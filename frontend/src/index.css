@@ -140,3 +140,8 @@ h5 {
 .list-row .badge {
 	margin-left: 10px;
 }
+
+.author-details {
+	color: #848d95;
+    font-size: 12px;
+}

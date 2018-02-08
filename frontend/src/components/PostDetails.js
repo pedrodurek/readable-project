@@ -18,7 +18,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 					</WrappedLabel>
 				</p>
 				<p>
-					<span className="post-author">
+					<span className="author-details">
 						Created by <b>{post.author}</b> at {formatDate(post.timestamp)}
 					</span>
 				</p>

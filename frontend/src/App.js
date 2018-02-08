@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
-import Posts from './views/Posts'
-import Post from './views/Post'
+import ListPosts from './views/ListPosts'
+import ShowPost from './views/ShowPost'
 import CreatePost from './views/CreatePost'
 import EditPost from './views/EditPost'
 import Header from './components/Header'    
@@ -17,15 +17,15 @@ class App extends Component {
         const { isFetching } = this.props
         return (
             <div className="app">
-                {/* <Header title="Readable" /> */}
                 <Loading show={isFetching} fullScreen={true} />
+                {/* <Header title="Readable" /> */}
                 <div className="main-container">
                     <Switch>
-                        <Route exact path="/" component={Posts} />
-                        <Route exact path="/:category" component={Posts} />
+                        <Route exact path="/" component={ListPosts} />
+                        <Route exact path="/:category" component={ListPosts} />
                         <Route path="/post/new" component={CreatePost} />
                         <Route path="/post/:post_id" component={EditPost} />
-                        <Route path="/:category/:post_id" component={Post} />
+                        <Route path="/:category/:post_id" component={ShowPost} />
                     </Switch>
                 </div>
                 <Footer content="© 2018 - Readable - Pedro Durek"/>
