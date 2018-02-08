@@ -124,7 +124,7 @@ class Post extends Component {
 				<ConfirmModal
 					showModal={showConfirmModal}
 					title={`Remove ${isCommentAction ? 'Comment' : 'Post'}`}
-					message={`Are you sure do you want do remove this ${
+					message={`Are you sure do you want to remove this ${
 						isCommentAction ? 'comment' : 'post'
 					}?`}
 					onConfirm={handleRemove}
