@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 // Actions
 import { fetchAllPosts, fetchAllPostsByCategory, fetchVotingAndSort, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'

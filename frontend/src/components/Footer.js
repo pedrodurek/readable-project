@@ -9,9 +9,7 @@ const Footer = ({ content }) => (
 )
 
 Footer.propTypes = {
-}
-
-Footer.defaultProps = {
+    content: PropTypes.string.isRequired
 }
 
 export default Footer

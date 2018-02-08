@@ -25,11 +25,21 @@ const ConfirmModal = ({
 	</Modal>
 )
 
-ConfirmModal.propTypes = {}
+ConfirmModal.propTypes = {
+	showModal: PropTypes.bool.isRequired,
+	title: PropTypes.string.isRequired,
+	message: PropTypes.string.isRequired,
+	confirmLabel: PropTypes.string,
+	cancelLabel: PropTypes.string,
+	onConfirm: PropTypes.func,
+	onCancel: PropTypes.func
+}
 
 ConfirmModal.defaultProps = {
 	confirmLabel: 'OK',
-	cancelLabel: 'Cancel'
+	cancelLabel: 'Cancel',
+	onConfirm: () => {},
+	onCancel: () => {}
 }
 
 export default ConfirmModal

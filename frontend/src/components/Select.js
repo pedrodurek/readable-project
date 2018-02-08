@@ -24,12 +24,14 @@ Select.propTypes = {
 	value: PropTypes.string.isRequired,
 	options: PropTypes.array.isRequired,
 	handle: PropTypes.func,
-	disabled: PropTypes.bool
+	disabled: PropTypes.bool,
+	className: PropTypes.string,
 }
 
 Select.defaultProps = {
 	handle: () => {},
-	disabled: false
+	disabled: false,
+	className: ''
 }
 
 export default Select

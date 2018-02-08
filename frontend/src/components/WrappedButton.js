@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const WrappedButton = ({ to, children, style, size }) => (
+const WrappedButton = ({ to, children, colour, size }) => (
 	<Link to={to}>
-		<Button bsStyle={style} bsSize={size}>
+		<Button bsStyle={colour} bsSize={size}>
 			{children}
 		</Button>
 	</Link>
@@ -13,13 +13,16 @@ const WrappedButton = ({ to, children, style, size }) => (
 
 WrappedButton.propTypes = {
 	to: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired
+	children: PropTypes.node.isRequired,
+	colour: PropTypes.string,
+	size: PropTypes.string
 }
 
 
 WrappedButton.defaultProps = {
 	confirmLabel: 'OK',
-	style: 'primary'
+	colour: 'primary',
+	size: ''
 }
 
 export default WrappedButton

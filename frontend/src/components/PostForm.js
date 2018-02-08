@@ -46,7 +46,7 @@ const PostForm = ({ handleSubmit, handlePost, categories, newPost }) => (
 			/>
 		</div>
 		<Button bsStyle="primary" type="submit">
-			{newPost && 'Create Post' || 'Save Post'}
+			{(newPost && 'Create Post') || 'Save Post'}
 		</Button>
 	</Form>
 )

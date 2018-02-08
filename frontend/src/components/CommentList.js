@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Grid, Row, Col, Badge } from 'react-bootstrap'
-import FaEdit from 'react-icons/lib/fa/edit'
-import FaTrash from 'react-icons/lib/fa/trash-o'
 import VoteOptions from './VoteOptions'
 
 const CommentList = ({

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Button, Label, Badge, Grid, Row, Col } from 'react-bootstrap'
+import { Button, Badge, Row, Col } from 'react-bootstrap'
 import { formatDate } from '../utils/helper'
 import VoteOptions from '../components/VoteOptions'
 import WrappedButton from '../components/WrappedButton'
@@ -24,7 +23,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost }) => (
 					</span>
 				</p>
 				<div className="btn-group">
-					<WrappedButton to={`/post/${post.id}`} size="xsmall" style="default">
+					<WrappedButton to={`/post/${post.id}`} size="xsmall" colour="default">
 						Edit
 					</WrappedButton>
 					<Button bsSize="xsmall" bsStyle="danger" onClick={() => handleRemovePost(post.id)}>
