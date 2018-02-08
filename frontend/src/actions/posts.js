@@ -8,6 +8,7 @@ export const EDIT_POST =  'EDIT_POST'
 export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
 export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 export const SET_POST = 'SET_POST'
+export const REMOVE_POST = 'REMOVE_POST'
 
 export const fetchAllPosts = (sortBy) => (dispatch) => {
 	dispatch(setIsFetchingPosts(true))
@@ -71,9 +72,9 @@ export const fetchEditPost = (postId, data, callback) => (dispatch) => {
 }
 
 export const fetchRemovePost = (postId, callback) => (dispatch) => {
-	dispatch(setIsFetchingPost(true))
+	dispatch(setIsFetchingPosts(true))
 	PostsAPI.del(postId).then((post) => {
-		dispatch(setIsFetchingPost(false))
+		dispatch(removePost(post))
 		callback()
 	})
 }
@@ -116,3 +117,10 @@ const editPost = (post) => ({
 	post,
 	isFetching: false
 })
+
+const removePost = (post) => ({
+	type: REMOVE_POST,
+	post,
+	isFetching: false
+})
+

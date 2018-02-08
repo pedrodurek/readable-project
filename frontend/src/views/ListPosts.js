@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 // Actions
-import { fetchAllPosts, fetchAllPostsByCategory, fetchVotingAndSort, sortPosts } from '../actions/posts'
+import { fetchAllPosts, fetchAllPostsByCategory, fetchRemovePost, fetchVotingAndSort, sortPosts } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
 // Components
@@ -10,8 +10,13 @@ import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
 import WrappedButton from '../components/WrappedButton'
+import ConfirmModal from '../components/ConfirmModal'
 
 class ListPosts extends Component {
+	state = {
+		showConfirmModal: false,
+		handleRemove: () => {}
+	}
 	componentDidMount() {
 		const { match: { params: { category } }, sort } = this.props
 		if (category) {
@@ -39,10 +44,32 @@ class ListPosts extends Component {
 		this.props.sortPosts(sortBy)
 	}
 
+	openConfirmModal = (callback) => {
+		this.setState({ showConfirmModal: true, handleRemove: callback })
+	}
+
+	handleRemovePost = (postId) => {
+		this.openConfirmModal(() => {
+			this.props.fetchRemovePost(postId, this.closeConfirmModal)
+		})
+	}
+
+	closeConfirmModal = () => {
+		this.setState({ showConfirmModal: false })
+	}
+
 	render() {
 		const { posts, sort, sortOptions, categories, fetchVoting } = this.props
+		const { handleRemove, showConfirmModal } = this.state
 		return (
 			<div>
+				<ConfirmModal
+					showModal={showConfirmModal}
+					title='Remove Post'
+					message='Are you sure do you want to remove this post?'
+					onConfirm={handleRemove}
+					onCancel={this.closeConfirmModal}
+				/>
 				<ShowCategories categories={categories} />
 				<h2 className="main-header">Posts</h2>
 				<div className="content">
@@ -58,6 +85,7 @@ class ListPosts extends Component {
 						updateVote={(postId, vote) =>
 							fetchVoting(postId, vote, sort)
 						}
+						handleRemovePost={this.handleRemovePost}
 					/>
 				</div>
 			</div>
@@ -76,6 +104,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
 	fetchAllPostsByCategory: (category, sortBy) =>
 		dispatch(fetchAllPostsByCategory(category, sortBy)),
+	fetchRemovePost: (postId, callback) =>
+		dispatch(fetchRemovePost(postId, callback)),
 	fetchVoting: (postId, vote, sortBy) =>
 		dispatch(fetchVotingAndSort(postId, vote, sortBy)),
 	fetchAllCategories: () => dispatch(fetchAllCategories()),

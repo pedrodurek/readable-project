@@ -6,7 +6,8 @@ import {
 	EDIT_POST, 
 	SORT_ALL_POSTS,
 	GET_POST_BY_ID,
-	SET_POST
+	SET_POST,
+	REMOVE_POST
 } from '../actions/posts'
 
 const initialState = {
@@ -38,6 +39,11 @@ const posts = (state = initialState, action) => {
 			return {
 				...state,
 				posts: posts.sort(sortBy(action.sortBy.key))
+			}
+		case REMOVE_POST:
+			return {
+				posts: state.posts.filter((post) => post.id !== action.post.id),
+				isFetching: action.isFetching
 			}
 		default:
 			return state

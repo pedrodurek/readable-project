@@ -1,8 +1,7 @@
-.post-author {
-    color: #848d95;
-    font-size: 12px;
-}
-
 .post-title {
     margin-top: 0;
+}
+
+.no-posts {
+    margin-top: 25px;
 }

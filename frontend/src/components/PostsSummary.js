@@ -5,62 +5,31 @@ import { Badge, Grid, Row, Col } from 'react-bootstrap'
 import { If, Then, Else } from 'react-if'
 import VoteOptions from './VoteOptions'
 import WrappedLabel from './WrappedLabel'
+import PostDetails from './PostDetails'
 import '../styles/PostsSummary.css'
 
-const PostsSummary = ({ posts, updateVote }) => (
-	<div className="content">
-		<If condition={posts.length > 0}>
-			<Then>
-				<Grid className="list-row">
-					{posts.map((post) => (
-						<Row key={post.id}>
-							<Col md={6} mdPull={6}>
-								<Link to={`/${post.category}/${post.id}`}>
-									<h3 className="post-title">{post.title}</h3>
-								</Link>
-								<p>
-									<WrappedLabel to={`/${post.category}`}>
-										{post.category}
-									</WrappedLabel>
-								</p>
-								<p>
-									<span className="author-details">
-										Created by <b>{post.author}</b>
-									</span>
-								</p>
-							</Col>
-							<Col md={6} mdPull={6}>
-								<p>
-									<Badge
-										bsStyle={
-											post.voteScore >= 0
-												? 'success'
-												: 'danger'
-										}
-									>
-										{post.voteScore}
-									</Badge>
-									<span> votes</span>
-								</p>
-								<p>
-									<Badge>{post.commentCount}</Badge>
-									<span> answers</span>
-								</p>
-								<VoteOptions
-									handle={(vote) =>
-										updateVote(post.id, vote)
-									}
-								/>
-							</Col>
-						</Row>
-					))}
-				</Grid>
-			</Then>
-			<Else>
-				<h4>There is not any post for this category</h4>
-			</Else>
-		</If>
-	</div>
+const PostsSummary = ({ posts, updateVote, handleRemovePost }) => (
+	<If condition={posts.length > 0}>
+		<Then>
+			<Grid className="list-row">
+				{posts.map((post) => (
+					<PostDetails 
+						key={post.id}
+						post={post}
+						updateVote={updateVote}
+						handleRemovePost={handleRemovePost}
+					>
+						<Link to={`/${post.category}/${post.id}`}>
+							<h3 className="post-title">{post.title}</h3>
+						</Link>
+					</PostDetails>
+				))}
+			</Grid>
+		</Then>
+		<Else>
+			<h4 className="no-posts">There is not any post for this category</h4>
+		</Else>
+	</If>
 )
 
 PostsSummary.propTypes = {

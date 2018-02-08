@@ -53,10 +53,11 @@ export const fetchVoting = (commentId, vote) => (dispatch) => {
 	})
 }
 
-export const fetchRemoveComment = (commentId) => (dispatch) => {
+export const fetchRemoveComment = (commentId, callback) => (dispatch) => {
 	dispatch(setIsFetching(true))
 	CommentsAPI.del(commentId).then((comment) => {
 		dispatch(removeComment(commentId))
+		callback()
 	})
 }
 

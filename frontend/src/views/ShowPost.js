@@ -36,6 +36,7 @@ class ShowPost extends Component {
 		window.scrollTo(0, 0)
 	}
 
+
 	openSimpleModal = () => {
 		this.setState({ showSimpleModal: true })
 	}
@@ -57,8 +58,7 @@ class ShowPost extends Component {
 			this.props.fetchEditComment(this.state.comment.id, data)
 		} else {
 			this.props.fetchAddComment(this.props.post.id, data, () => {
-				const { match: { params: { post_id } } } = this.props
-				this.props.fetchPostById(post_id)
+				this.props.fetchPostById(this.props.match.params.post_id)
 			})
 		}
 		this.closeSimpleModal()
@@ -86,7 +86,9 @@ class ShowPost extends Component {
 	handleRemoveComment = (commentId) => {
 		this.setState({ isCommentAction: true })
 		this.openConfirmModal(() => {
-			this.props.fetchRemoveComment(commentId)
+			this.props.fetchRemoveComment(commentId, () => {
+				this.props.fetchPostById(this.props.match.params.post_id)
+			})
 			this.closeConfirmModal()
 		})
 	}
@@ -130,11 +132,17 @@ class ShowPost extends Component {
 					onConfirm={handleRemove}
 					onCancel={this.closeConfirmModal}
 				/>
-				<PostDetails
-					post={post}
-					updateVote={fetchVotingPost}
-					handleRemovePost={this.handleRemovePost}
-				/>
+				<div className="list-row">
+					<h2 className="main-header">{post.title}</h2>
+					<PostDetails
+						post={post}
+						updateVote={fetchVotingPost}
+						handleRemovePost={this.handleRemovePost}
+						showBody={true}
+					>
+						<h5>{post.body}</h5>
+					</PostDetails>
+				</div>
 				<h2 className="main-header">Comments</h2>
 				<div className="content">
 					<Button bsStyle="primary" onClick={this.openSimpleModal}>
@@ -168,7 +176,8 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchEditComment: (commentId, comment) => dispatch(fetchEditComment(commentId, comment)),
 	fetchRemovePost: (postId, callback) =>
 		dispatch(fetchRemovePost(postId, callback)),
-	fetchRemoveComment: (commentId) => dispatch(fetchRemoveComment(commentId))
+	fetchRemoveComment: (commentId, callback) => 
+		dispatch(fetchRemoveComment(commentId, callback))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowPost)
