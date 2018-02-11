@@ -50,10 +50,6 @@ h5 {
 	background-color: #36d7b7;
 }
 
-.main-container {
-	margin: 140px 250px 50px 250px;
-}
-
 .small-container {
 	margin: 0 100px;
 }
@@ -144,4 +140,8 @@ h5 {
 .author-details {
 	color: #848d95;
     font-size: 12px;
+}
+
+.btn-toolbar {
+    margin-left: 0px;
 }

@@ -16,3 +16,21 @@
     filter: alpha(opacity=80);
     background-color: #fff;
 }
+
+.main-container {
+	margin: 50px 250px 50px 250px;
+}
+
+.breadcrumb {
+    margin-top: 99px;
+    padding-left: 50px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.breadcrumb > li.active ~ li.active {
+	display: none;
+}
+

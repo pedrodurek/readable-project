@@ -31,8 +31,6 @@ class ListPosts extends Component {
 	componentWillReceiveProps(newProps) {
 		const { match: { params: { category } }, sort } = this.props
 		const { match: { params } } = newProps
-		console.log(category)
-		console.log(params.category)
 		if (params.category && (category !== params.category)) {
 			this.props.fetchAllPostsByCategory(params.category, sort)
 		} else if (category && !params.category) {
@@ -73,7 +71,7 @@ class ListPosts extends Component {
 				<ShowCategories categories={categories} />
 				<h2 className="main-header">Posts</h2>
 				<div className="content">
-					<WrappedButton to={'/post/new'}>New Post</WrappedButton>
+					<WrappedButton to='/new'>New Post</WrappedButton>
 					<Select
 						value={sort.text}
 						options={sortOptions}

@@ -18,27 +18,30 @@ const PostDetails = ({ post, updateVote, handleRemovePost, children }) => (
 			</p>
 			<p>
 				<span className="author-details">
-					Created by <b>{post.author}</b> at {formatDate(post.timestamp)}
+					Created by <b>{post.author}</b> at{' '}
+					{formatDate(post.timestamp)}
 				</span>
 			</p>
 			<div className="btn-group">
-				<WrappedButton to={`/post/${post.id}`} size="xsmall" colour="default">
+				<WrappedButton
+					to={`/${post.category}/${post.id}/edit`}
+					size="xsmall"
+					colour="default"
+				>
 					Edit
 				</WrappedButton>
-				<Button bsSize="xsmall" bsStyle="danger" onClick={() => handleRemovePost(post.id)}>
+				<Button
+					bsSize="xsmall"
+					bsStyle="danger"
+					onClick={() => handleRemovePost(post.id)}
+				>
 					Delete
 				</Button>
 			</div>
 		</Col>
 		<Col md={6} mdPull={6}>
 			<p>
-				<Badge
-					bsStyle={
-						post.voteScore >= 0
-							? 'success'
-							: 'danger'
-					}
-				>
+				<Badge bsStyle={post.voteScore >= 0 ? 'success' : 'danger'}>
 					{post.voteScore}
 				</Badge>
 				<span> votes</span>
@@ -47,11 +50,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost, children }) => (
 				<Badge>{post.commentCount}</Badge>
 				<span> answers</span>
 			</p>
-			<VoteOptions
-				handle={(vote) =>
-					updateVote(post.id, vote)
-				}
-			/>
+			<VoteOptions handle={(vote) => updateVote(post.id, vote)} />
 		</Col>
 	</Row>
 )
@@ -59,7 +58,7 @@ const PostDetails = ({ post, updateVote, handleRemovePost, children }) => (
 PostDetails.propTypes = {
 	post: PropTypes.object.isRequired,
 	updateVote: PropTypes.func.isRequired,
-	handleRemovePost: PropTypes.func.isRequired,
+	handleRemovePost: PropTypes.func.isRequired
 }
 
 export default PostDetails
