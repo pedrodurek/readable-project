@@ -15,9 +15,11 @@ const BreadcrumpItem = ({ history, match, title }) => (
 )
 
 BreadcrumpItem.propTypes = {
+    title: PropTypes.string
 }
 
 BreadcrumpItem.defaultProps = {
+    title: ''
 }
 
 export default BreadcrumpItem

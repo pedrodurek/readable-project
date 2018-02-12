@@ -7,8 +7,8 @@ import { fetchAllCategories } from '../actions/categories'
 
 class CreatePost extends Component {
 	componentDidMount() {
-        this.props.fetchAllCategories()
-        window.scrollTo(0, 0)
+		this.props.fetchAllCategories()
+		window.scrollTo(0, 0)
 	}
 
 	handleAddPost = (data) => {

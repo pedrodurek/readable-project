@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Badge, Grid, Row, Col } from 'react-bootstrap'
+import { Grid } from 'react-bootstrap'
 import { If, Then, Else } from 'react-if'
-import VoteOptions from './VoteOptions'
-import WrappedLabel from './WrappedLabel'
 import PostDetails from './PostDetails'
 import '../styles/PostsSummary.css'
 
@@ -34,7 +32,8 @@ const PostsSummary = ({ posts, updateVote, handleRemovePost }) => (
 
 PostsSummary.propTypes = {
 	posts: PropTypes.array.isRequired,
-	updateVote: PropTypes.func.isRequired
+	updateVote: PropTypes.func.isRequired,
+	handleRemovePost: PropTypes.func.isRequired
 }
 
 export default PostsSummary

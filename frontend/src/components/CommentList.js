@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { formatDate } from '../utils/helper'
 import { Button, Grid, Row, Col, Badge } from 'react-bootstrap'
 import VoteOptions from './VoteOptions'
 
@@ -16,7 +17,8 @@ const CommentList = ({
 					<h5>{comment.body}</h5>
 					<p>
 						<span className="author-details">
-							Created by <b>{comment.author}</b>
+							Created by <b>{comment.author}</b> at{' '}
+							{formatDate(comment.timestamp)}
 						</span>
 					</p>
 					<div className="btn-group">
@@ -40,9 +42,7 @@ const CommentList = ({
 					<p>
 						<Badge
 							bsStyle={
-								comment.voteScore >= 0
-									? 'success'
-									: 'danger'
+								comment.voteScore >= 0 ? 'success' : 'danger'
 							}
 						>
 							{comment.voteScore}
@@ -52,7 +52,6 @@ const CommentList = ({
 					<VoteOptions
 						handle={(vote) => updateVote(comment.id, vote)}
 					/>
-
 				</Col>
 			</Row>
 		))}
