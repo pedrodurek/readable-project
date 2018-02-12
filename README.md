@@ -1,6 +1,6 @@
 # Readable - Udacity React Nanodegree Project
 
-![React and Redux](./images/reactredux.png)
+![React and Redux](/images/reactredux.png)
 
 ## Start Developing
 
