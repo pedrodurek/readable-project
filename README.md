@@ -1,6 +1,6 @@
 # Readable - Udacity React Nanodegree Project
 
-![Image of Yaktocat](images/reactredux.png)
+![React and Redux](./images/reactredux.png)
 
 ## Start Developing
 
