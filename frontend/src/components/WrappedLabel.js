@@ -6,15 +6,13 @@ import '../styles/WrappedLabel.css'
 
 const WrappedLabel = ({ to, children }) => (
 	<Link to={to}>
-		<Label bsStyle="dark-link">
-			{children}
-		</Label>
+		<Label className="label-dark-link">{children}</Label>
 	</Link>
 )
 
 WrappedLabel.propTypes = {
 	to: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired
+	children: PropTypes.node
 }
 
 export default WrappedLabel

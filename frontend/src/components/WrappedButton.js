@@ -21,8 +21,7 @@ WrappedButton.propTypes = {
 
 WrappedButton.defaultProps = {
 	confirmLabel: 'OK',
-	colour: 'primary',
-	size: ''
+	colour: 'primary'
 }
 
 export default WrappedButton
