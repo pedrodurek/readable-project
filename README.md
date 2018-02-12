@@ -1,6 +1,6 @@
 # Readable - Udacity React Nanodegree Project
 
-![React and Redux](images/reactredux.png =100x20)
+<img src="images/reactredux.png" width="200">
 
 ## Start Developing
 
