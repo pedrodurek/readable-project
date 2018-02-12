@@ -6,18 +6,26 @@ import FaThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import '../styles/VoteOptions.css'
 
 const VoteOptions = ({ handle }) => (
-	<div>
-	    <Button className="btn-icon" bsStyle="success" onClick={() => handle('upVote')}>
-	        <FaThumbsUp size={20} />
-	    </Button>
-	    <Button className="btn-icon" bsStyle="danger" onClick={() => handle('downVote')}>
-	        <FaThumbsDown size={20} />
-	    </Button>                            
-	</div>
+    <div>
+        <Button
+            className="btn-icon"
+            bsStyle="success"
+            onClick={() => handle('upVote')}
+        >
+            <FaThumbsUp size={20} />
+        </Button>
+        <Button
+            className="btn-icon"
+            bsStyle="danger"
+            onClick={() => handle('downVote')}
+        >
+            <FaThumbsDown size={20} />
+        </Button>
+    </div>
 )
 
 VoteOptions.propTypes = {
-	handle: PropTypes.func.isRequired
+    handle: PropTypes.func.isRequired
 }
 
 export default VoteOptions

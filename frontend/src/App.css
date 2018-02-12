@@ -18,7 +18,7 @@
 }
 
 .main-container {
-	margin: 50px 250px 50px 250px;
+    margin: 50px 250px 50px 250px;
 }
 
 .breadcrumb {
@@ -31,6 +31,5 @@
 }
 
 .breadcrumb > li.active ~ li.active {
-	display: none;
+    display: none;
 }
-

@@ -6,13 +6,12 @@ import categories from './categories'
 import sortOptions from './sort-options'
 import comments from './comments'
 
-
 export default combineReducers({
-	posts,
-	post,
-	sort,
-	categories,
-	sortOptions,
-	comments,
-	form: formReducer
+    posts,
+    post,
+    sort,
+    categories,
+    sortOptions,
+    comments,
+    form: formReducer
 })

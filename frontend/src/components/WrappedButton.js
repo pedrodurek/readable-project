@@ -4,24 +4,23 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const WrappedButton = ({ to, children, colour, size }) => (
-	<Link to={to}>
-		<Button bsStyle={colour} bsSize={size}>
-			{children}
-		</Button>
-	</Link>
+    <Link to={to}>
+        <Button bsStyle={colour} bsSize={size}>
+            {children}
+        </Button>
+    </Link>
 )
 
 WrappedButton.propTypes = {
-	to: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired,
-	colour: PropTypes.string,
-	size: PropTypes.string
+    to: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    colour: PropTypes.string,
+    size: PropTypes.string
 }
 
-
 WrappedButton.defaultProps = {
-	confirmLabel: 'OK',
-	colour: 'primary'
+    confirmLabel: 'OK',
+    colour: 'primary'
 }
 
 export default WrappedButton

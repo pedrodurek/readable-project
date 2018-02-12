@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom'
 import '../styles/WrappedLabel.css'
 
 const WrappedLabel = ({ to, children }) => (
-	<Link to={to}>
-		<Label className="label-dark-link">{children}</Label>
-	</Link>
+    <Link to={to}>
+        <Label className="label-dark-link">{children}</Label>
+    </Link>
 )
 
 WrappedLabel.propTypes = {
-	to: PropTypes.string.isRequired,
-	children: PropTypes.node
+    to: PropTypes.string.isRequired,
+    children: PropTypes.node
 }
 
 export default WrappedLabel
