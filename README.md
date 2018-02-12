@@ -49,7 +49,3 @@ $ yarn start
 * [sort-by](https://github.com/kvnneff/sort-by)
 * [uuid](https://github.com/kelektiv/node-uuid)
 * [moment](https://github.com/moment/moment)
-
-
-
-
