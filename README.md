@@ -4,7 +4,7 @@
 
 Project based on **react** and **redux** technologies to demonstrate the knowledge gained through the React Nanodegree course offered by Udacity.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). More information can be found [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). More information can be found [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## How to install and run the project
 
