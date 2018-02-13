@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Pagination } from 'react-bootstrap'
 import { submit } from 'redux-form'
+import { If } from 'react-if'
+import { getNumPages, getIndexesPage } from '../utils/helper'
 import {
     fetchPostById,
     fetchRemovePost,
@@ -26,7 +29,11 @@ class ShowPost extends Component {
         showConfirmModal: false,
         isCommentAction: false,
         comment: null,
-        handleRemove: () => {}
+        handleRemove: () => {},
+        pagination: {
+            activePage: 1,
+            perPage: 5
+        }
     }
 
     componentDidMount() {
@@ -92,6 +99,17 @@ class ShowPost extends Component {
         })
     }
 
+    switchPage = (pageNumber) => {
+        const node = ReactDOM.findDOMNode(this.refs.commentlist)
+        window.scrollTo(0, node.offsetTop)
+        this.setState(({ pagination }) => ({
+            pagination: {
+                ...pagination,
+                activePage: pageNumber
+            }
+        }))
+    }
+
     render() {
         const {
             post,
@@ -105,8 +123,11 @@ class ShowPost extends Component {
             showConfirmModal,
             isCommentAction,
             comment,
-            handleRemove
+            handleRemove,
+            pagination
         } = this.state
+        const numPages = getNumPages(comments.length, pagination.perPage)
+        const indexes = getIndexesPage(comments.length, pagination.activePage)
         return (
             <div>
                 <SimpleModal
@@ -142,17 +163,26 @@ class ShowPost extends Component {
                         <h5>{post.body}</h5>
                     </PostDetails>
                 </div>
-                <h2 className="main-header">Comments</h2>
+                <h2 ref="commentlist" className="main-header">Comments</h2>
                 <div className="content">
                     <Button bsStyle="primary" onClick={this.openSimpleModal}>
                         New Comment
                     </Button>
                     <CommentList
-                        comments={comments}
+                        comments={comments.slice(indexes.first, indexes.last)}
                         updateVote={fetchVotingComment}
                         handleEditComment={this.handleEditComment}
                         handleRemoveComment={this.handleRemoveComment}
                     />
+                    <If condition={comments.length > 0}>
+                        <Pagination 
+                            activePage={pagination.activePage}
+                            items={numPages} 
+                            next={true} 
+                            prev={true}
+                            onSelect={this.switchPage}
+                        />
+                    </If>
                 </div>
             </div>
         )

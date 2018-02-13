@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-// Actions
+import { Pagination } from 'react-bootstrap'
+import { If } from 'react-if'
+import { getNumPages, getIndexesPage } from '../utils/helper'
 import {
     fetchAllPosts,
     fetchAllPostsByCategory,
@@ -11,18 +14,22 @@ import {
 } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
-// Components
 import Select from '../components/Select'
 import ShowCategories from '../components/ShowCategories'
 import PostsSummary from '../components/PostsSummary'
 import WrappedButton from '../components/WrappedButton'
 import ConfirmModal from '../components/ConfirmModal'
 
-class ListPosts extends Component {
+class ListPost extends Component {
     state = {
         showConfirmModal: false,
-        handleRemove: () => {}
+        handleRemove: () => {},
+        pagination: {
+            activePage: 1,
+            perPage: 5
+        }
     }
+
     componentDidMount() {
         const { match: { params: { category } }, sort } = this.props
         if (category) {
@@ -62,9 +69,22 @@ class ListPosts extends Component {
         this.setState({ showConfirmModal: false })
     }
 
+    switchPage = (pageNumber) => {
+        const node = ReactDOM.findDOMNode(this.refs.postlist)
+        window.scrollTo(0, node.offsetTop)
+        this.setState(({ pagination }) => ({
+            pagination: {
+                ...pagination,
+                activePage: pageNumber
+            }
+        }))
+    }
+
     render() {
         const { posts, sort, sortOptions, categories, fetchVoting } = this.props
-        const { handleRemove, showConfirmModal } = this.state
+        const { handleRemove, showConfirmModal, pagination } = this.state
+        const numPages = getNumPages(posts.length, pagination.perPage)
+        const indexes = getIndexesPage(posts.length, pagination.activePage)
         return (
             <div>
                 <ConfirmModal
@@ -75,7 +95,7 @@ class ListPosts extends Component {
                     onCancel={this.closeConfirmModal}
                 />
                 <ShowCategories categories={categories} />
-                <h2 className="main-header">Posts</h2>
+                <h2 ref="postlist" className="main-header">Posts</h2>
                 <div className="content">
                     <WrappedButton to="/new">New Post</WrappedButton>
                     <Select
@@ -85,12 +105,21 @@ class ListPosts extends Component {
                         className="select-sort"
                     />
                     <PostsSummary
-                        posts={posts}
+                        posts={posts.slice(indexes.first, indexes.last)}
                         updateVote={(postId, vote) =>
                             fetchVoting(postId, vote, sort)
                         }
                         handleRemovePost={this.handleRemovePost}
                     />
+                    <If condition={posts.length > 0}>
+                        <Pagination 
+                            activePage={pagination.activePage}
+                            items={numPages} 
+                            next={true} 
+                            prev={true}
+                            onSelect={this.switchPage}
+                        />
+                    </If>
                 </div>
             </div>
         )
@@ -120,5 +149,5 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ListPosts)
+    connect(mapStateToProps, mapDispatchToProps)(ListPost)
 )

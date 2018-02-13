@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
-import ListPosts from './views/ListPosts'
+import ListPost from './views/ListPost'
 import ShowPost from './views/ShowPost'
 import CreatePost from './views/CreatePost'
 import EditPost from './views/EditPost'
@@ -18,7 +18,7 @@ class App extends Component {
             {
                 path: '/',
                 exact: true,
-                component: ListPosts,
+                component: ListPost,
                 title: 'home'
             },
             {
@@ -30,7 +30,7 @@ class App extends Component {
             {
                 path: '/:category',
                 exact: true,
-                component: ListPosts,
+                component: ListPost,
                 title: ''
             },
             {

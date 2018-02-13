@@ -25,7 +25,7 @@ const PostsSummary = ({ posts, updateVote, handleRemovePost }) => (
             </Grid>
         </Then>
         <Else>
-            <h4 className="no-posts">
+            <h4 className="no-data">
                 There is not any post for this category
             </h4>
         </Else>

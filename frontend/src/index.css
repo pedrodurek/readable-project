@@ -147,3 +147,7 @@ h5 {
 .btn-toolbar {
     margin-left: 0px;
 }
+
+.no-data {
+    margin-top: 25px;
+}
