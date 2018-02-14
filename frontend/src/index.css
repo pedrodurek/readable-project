@@ -50,6 +50,10 @@ h5 {
     background-color: #36d7b7;
 }
 
+.dropdown-toggle {
+    white-space: normal;
+}
+
 .small-container {
     margin: 0 100px;
 }
@@ -76,7 +80,7 @@ h5 {
 }
 
 .select-sort > button {
-    width: 190px;
+    width: 210px;
 }
 
 .content {
