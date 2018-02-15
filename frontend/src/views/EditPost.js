@@ -45,11 +45,10 @@ const mapStateToProps = (state) => ({
     categories: state.categories.categories
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchPostById: (id) => dispatch(fetchPostById(id)),
-    fetchAllCategories: () => dispatch(fetchAllCategories()),
-    fetchEditPost: (postId, data, callback) =>
-        dispatch(fetchEditPost(postId, data, callback))
-})
+const mapDispatchToProps = {
+    fetchPostById,
+    fetchAllCategories,
+    fetchEditPost
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost)

@@ -38,7 +38,9 @@ class ShowPost extends Component {
 
     componentDidMount() {
         const { match: { params: { post_id } } } = this.props
-        this.props.fetchPostById(post_id)
+        this.props
+            .fetchPostById(post_id)
+            .catch(() => this.props.history.push('/404'))
         this.props.fetchCommentsByPost(post_id)
         window.scrollTo(0, 0)
     }
@@ -163,7 +165,9 @@ class ShowPost extends Component {
                         <h5>{post.body}</h5>
                     </PostDetails>
                 </div>
-                <h2 ref="commentlist" className="main-header">Comments</h2>
+                <h2 ref="commentlist" className="main-header">
+                    Comments
+                </h2>
                 <div className="content">
                     <Button bsStyle="primary" onClick={this.openSimpleModal}>
                         New Comment
@@ -175,10 +179,10 @@ class ShowPost extends Component {
                         handleRemoveComment={this.handleRemoveComment}
                     />
                     <If condition={comments.length > 0}>
-                        <Pagination 
+                        <Pagination
                             activePage={pagination.activePage}
-                            items={numPages} 
-                            next={true} 
+                            items={numPages}
+                            next={true}
                             prev={true}
                             onSelect={this.switchPage}
                         />
@@ -194,21 +198,16 @@ const mapStateToProps = (state) => ({
     comments: state.comments.comments
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchPostById: (id) => dispatch(fetchPostById(id)),
-    fetchVotingPost: (postId, vote) => dispatch(fetchVotingPost(postId, vote)),
-    fetchCommentsByPost: (postId) => dispatch(fetchCommentsByPost(postId)),
-    fetchVotingComment: (commentId, vote) =>
-        dispatch(fetchVotingComment(commentId, vote)),
-    submitComment: () => dispatch(submit('initializeCommentForm')),
-    fetchAddComment: (postId, data, callback) =>
-        dispatch(fetchAddComment(postId, data, callback)),
-    fetchEditComment: (commentId, comment) =>
-        dispatch(fetchEditComment(commentId, comment)),
-    fetchRemovePost: (postId, callback) =>
-        dispatch(fetchRemovePost(postId, callback)),
-    fetchRemoveComment: (commentId, callback) =>
-        dispatch(fetchRemoveComment(commentId, callback))
-})
+const mapDispatchToProps = {
+    fetchPostById,
+    fetchVotingPost,
+    fetchCommentsByPost,
+    fetchVotingComment,
+    submitComment: () => submit('initializeCommentForm'),
+    fetchAddComment,
+    fetchEditComment,
+    fetchRemovePost,
+    fetchRemoveComment
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowPost)

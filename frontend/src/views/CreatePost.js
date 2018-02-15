@@ -42,14 +42,9 @@ const mapStateToProps = (state) => ({
     categories: state.categories.categories
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchAddPost: (post, callback) => dispatch(fetchAddPost(post, callback)),
-    fetchAllCategories: () =>
-        dispatch(
-            fetchAllCategories((category) =>
-                dispatch(change('initializePostForm', 'category', category))
-            )
-        )
-})
+const mapDispatchToProps = {
+    fetchAddPost,
+    fetchAllCategories
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)

@@ -28,8 +28,13 @@ export const fetchAllPostsByCategory = (category, sortBy) => (dispatch) => {
 
 export const fetchPostById = (id) => (dispatch) => {
     dispatch(setIsFetchingPost(true))
-    PostsAPI.get(id).then((post) => {
+    return PostsAPI.get(id).then((post) => {
+        if (post.error) {
+            dispatch(setIsFetchingPost(false))
+            return Promise.reject()
+        }
         dispatch(getPostById(post))
+        return Promise.resolve()
     })
 }
 

@@ -52,6 +52,7 @@ class ListPost extends Component {
     }
 
     sortHandle = (sortBy) => {
+        this.props.setSort(sortBy)
         this.props.sortPosts(sortBy)
     }
 
@@ -133,20 +134,16 @@ const mapStateToProps = (state) => ({
     sortOptions: state.sortOptions
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchAllPosts: (sortBy) => dispatch(fetchAllPosts(sortBy)),
-    fetchAllPostsByCategory: (category, sortBy) =>
-        dispatch(fetchAllPostsByCategory(category, sortBy)),
-    fetchRemovePost: (postId, callback) =>
-        dispatch(fetchRemovePost(postId, callback)),
-    fetchVoting: (postId, vote, sortBy) =>
-        dispatch(fetchVotingAndSort(postId, vote, sortBy)),
-    fetchAllCategories: () => dispatch(fetchAllCategories()),
-    sortPosts: (sortBy) => {
-        dispatch(setSort('post', sortBy))
-        dispatch(sortPosts(sortBy))
-    }
-})
+const mapDispatchToProps = {
+    fetchAllPosts,
+    fetchAllPostsByCategory,
+    fetchRemovePost,
+    fetchVoting: fetchVotingAndSort,
+    fetchAllCategories,
+    setSort: (sortBy) => setSort('post', sortBy),
+    sortPosts: sortPosts
+}
+
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(ListPost)
