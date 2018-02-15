@@ -54,33 +54,33 @@ export const fetchVoting = (postId, vote) => (dispatch) => {
     })
 }
 
-export const fetchAddPost = (data, callback) => (dispatch) => {
+export const fetchAddPost = (data) => (dispatch) => {
     const newPost = {
         ...data,
         id: uuidv1(),
         timestamp: Date.now()
     }
     dispatch(setIsFetchingPost(true))
-    PostsAPI.insert(newPost).then((post) => {
+    return PostsAPI.insert(newPost).then((post) => {
         dispatch(setIsFetchingPost(false))
-        callback()
+        Promise.resolve()
     })
 }
 
-export const fetchEditPost = (postId, data, callback) => (dispatch) => {
+export const fetchEditPost = (postId, data) => (dispatch) => {
     const { title, body } = data
     dispatch(setIsFetchingPost(true))
     PostsAPI.update(postId, { title, body }).then((post) => {
         dispatch(setIsFetchingPost(false))
-        callback()
+        Promise.resolve()
     })
 }
 
-export const fetchRemovePost = (postId, callback) => (dispatch) => {
+export const fetchRemovePost = (postId) => (dispatch) => {
     dispatch(setIsFetchingPosts(true))
     PostsAPI.del(postId).then((post) => {
         dispatch(removePost(post))
-        callback()
+        Promise.resolve()
     })
 }
 

@@ -62,7 +62,9 @@ class ListPost extends Component {
 
     handleRemovePost = (postId) => {
         this.openConfirmModal(() => {
-            this.props.fetchRemovePost(postId, this.closeConfirmModal)
+            this.props
+                .fetchRemovePost(postId)
+                .then(() => this.closeConfirmModal)
         })
     }
 
@@ -96,7 +98,9 @@ class ListPost extends Component {
                     onCancel={this.closeConfirmModal}
                 />
                 <ShowCategories categories={categories} />
-                <h2 ref="postlist" className="main-header">Posts</h2>
+                <h2 ref="postlist" className="main-header">
+                    Posts
+                </h2>
                 <div className="content">
                     <WrappedButton to="/new">New Post</WrappedButton>
                     <Select
@@ -113,10 +117,10 @@ class ListPost extends Component {
                         handleRemovePost={this.handleRemovePost}
                     />
                     <If condition={posts.length > 0}>
-                        <Pagination 
+                        <Pagination
                             activePage={pagination.activePage}
-                            items={numPages} 
-                            next={true} 
+                            items={numPages}
+                            next={true}
                             prev={true}
                             onSelect={this.switchPage}
                         />
@@ -143,7 +147,6 @@ const mapDispatchToProps = {
     setSort: (sortBy) => setSort('post', sortBy),
     sortPosts: sortPosts
 }
-
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(ListPost)

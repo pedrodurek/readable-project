@@ -16,7 +16,7 @@ export const fetchCommentsByPost = (postId) => (dispatch) => {
     })
 }
 
-export const fetchAddComment = (postId, data, callback) => (dispatch) => {
+export const fetchAddComment = (postId, data) => (dispatch) => {
     const newComment = {
         id: uuidv1(),
         ...data,
@@ -24,10 +24,10 @@ export const fetchAddComment = (postId, data, callback) => (dispatch) => {
         parentId: postId
     }
     dispatch(setIsFetching(true))
-    CommentsAPI.insert(newComment).then((comment) => {
+    return CommentsAPI.insert(newComment).then((comment) => {
         dispatch(addComment(comment))
         dispatch(sortComments('-voteScore'))
-        callback()
+        Promise.resolve()
     })
 }
 
@@ -52,11 +52,11 @@ export const fetchVoting = (commentId, vote) => (dispatch) => {
     })
 }
 
-export const fetchRemoveComment = (commentId, callback) => (dispatch) => {
+export const fetchRemoveComment = (commentId) => (dispatch) => {
     dispatch(setIsFetching(true))
-    CommentsAPI.del(commentId).then((comment) => {
+    return CommentsAPI.del(commentId).then((comment) => {
         dispatch(removeComment(commentId))
-        callback()
+        Promise.resolve()
     })
 }
 

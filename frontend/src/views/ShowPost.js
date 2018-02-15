@@ -37,10 +37,8 @@ class ShowPost extends Component {
     }
 
     componentDidMount() {
-        const { match: { params: { post_id } } } = this.props
-        this.props
-            .fetchPostById(post_id)
-            .catch(() => this.props.history.push('/404'))
+        const { match: { params: { post_id } }, history } = this.props
+        this.props.fetchPostById(post_id).catch(() => history.push('/404'))
         this.props.fetchCommentsByPost(post_id)
         window.scrollTo(0, 0)
     }
@@ -62,12 +60,13 @@ class ShowPost extends Component {
     }
 
     handleComment = (data) => {
+        const { match, post } = this.props
         if (this.state.comment) {
             this.props.fetchEditComment(this.state.comment.id, data)
         } else {
-            this.props.fetchAddComment(this.props.post.id, data, () => {
-                this.props.fetchPostById(this.props.match.params.post_id)
-            })
+            this.props
+                .fetchAddComment(post.id, data)
+                .then(() => this.props.fetchPostById(match.params.post_id))
         }
         this.closeSimpleModal()
     }
@@ -85,18 +84,20 @@ class ShowPost extends Component {
     handleRemovePost = (postId) => {
         this.setState({ isCommentAction: false })
         this.openConfirmModal(() => {
-            this.props.fetchRemovePost(postId, () => {
-                this.props.history.push('/')
-            })
+            this.props
+                .fetchRemovePost(postId)
+                .then(() => this.props.history.push('/'))
         })
     }
 
     handleRemoveComment = (commentId) => {
         this.setState({ isCommentAction: true })
         this.openConfirmModal(() => {
-            this.props.fetchRemoveComment(commentId, () => {
-                this.props.fetchPostById(this.props.match.params.post_id)
-            })
+            this.props
+                .fetchRemoveComment(commentId)
+                .then(() =>
+                    this.props.fetchPostById(this.props.match.params.post_id)
+                )
             this.closeConfirmModal()
         })
     }

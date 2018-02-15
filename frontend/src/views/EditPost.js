@@ -14,9 +14,7 @@ class EditPost extends Component {
 
     handleEditPost = (data) => {
         const { history, post: { id } } = this.props
-        this.props.fetchEditPost(id, data, () => {
-            history.push('/')
-        })
+        this.props.fetchEditPost(id, data).then(() => history.push('/'))
     }
 
     render() {
