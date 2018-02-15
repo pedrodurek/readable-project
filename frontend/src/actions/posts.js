@@ -70,7 +70,7 @@ export const fetchAddPost = (data) => (dispatch) => {
 export const fetchEditPost = (postId, data) => (dispatch) => {
     const { title, body } = data
     dispatch(setIsFetchingPost(true))
-    PostsAPI.update(postId, { title, body }).then((post) => {
+    return PostsAPI.update(postId, { title, body }).then((post) => {
         dispatch(setIsFetchingPost(false))
         Promise.resolve()
     })
@@ -78,7 +78,7 @@ export const fetchEditPost = (postId, data) => (dispatch) => {
 
 export const fetchRemovePost = (postId) => (dispatch) => {
     dispatch(setIsFetchingPosts(true))
-    PostsAPI.del(postId).then((post) => {
+    return PostsAPI.del(postId).then((post) => {
         dispatch(removePost(post))
         Promise.resolve()
     })

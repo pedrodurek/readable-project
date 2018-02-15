@@ -61,7 +61,7 @@ class App extends Component {
         return (
             <div className="app">
                 <Loading show={isFetching} fullScreen={true} />
-                <Header title="Readable" />
+                {/* <Header title="Readable" /> */}
                 <Breadcrumb>
                     {routes.map((route, i) => (
                         <Route
@@ -82,7 +82,7 @@ class App extends Component {
                         <Redirect from='*' to='/404' />
                     </Switch>
                 </div>
-                <Footer content="© 2018 - Readable - Pedro Durek" />
+                {/* <Footer content="© 2018 - Readable - Pedro Durek" /> */}
             </div>
         )
     }

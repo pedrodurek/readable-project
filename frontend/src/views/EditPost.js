@@ -6,10 +6,11 @@ import { fetchAllCategories } from '../actions/categories'
 
 class EditPost extends Component {
     componentDidMount() {
-        const { match: { params: { post_id } } } = this.props
-        this.props.fetchPostById(post_id)
-        this.props.fetchAllCategories()
-        window.scrollTo(0, 0)
+        const { match: { params: { post_id } }, history } = this.props
+        this.props.fetchPostById(post_id).then(() => {
+            this.props.fetchAllCategories()
+            window.scrollTo(0, 0)
+        }).catch(() => history.push('/404'))
     }
 
     handleEditPost = (data) => {
