@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import ListPost from './views/ListPost'
@@ -61,7 +62,7 @@ class App extends Component {
         return (
             <div className="app">
                 <Loading show={isFetching} fullScreen={true} />
-                {/* <Header title="Readable" /> */}
+                <Header title="Readable" />
                 <Breadcrumb>
                     {routes.map((route, i) => (
                         <Route
@@ -79,10 +80,10 @@ class App extends Component {
                 <div className="main-container">
                     <Switch>
                         {routes.map((route, i) => <Route key={i} {...route} />)}
-                        <Redirect from='*' to='/404' />
+                        <Redirect from="*" to="/404" />
                     </Switch>
                 </div>
-                {/* <Footer content="© 2018 - Readable - Pedro Durek" /> */}
+                <Footer content="© 2018 - Readable - Pedro Durek" />
             </div>
         )
     }
@@ -96,4 +97,4 @@ const mapStateToProps = (state) => ({
         state.post.isFetching
 })
 
-export default withRouter(connect(mapStateToProps)(App))
+export default compose(withRouter, connect(mapStateToProps))(App)

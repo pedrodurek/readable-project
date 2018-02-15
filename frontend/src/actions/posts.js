@@ -5,25 +5,20 @@ export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const REQUEST_POST = 'REQUEST_POST'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const EDIT_POST = 'EDIT_POST'
-export const SORT_ALL_POSTS = 'SORT_ALL_POSTS'
 export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 export const SET_POST = 'SET_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 
-export const fetchAllPosts = (sortBy) => (dispatch) => {
+export const fetchAllPosts = () => (dispatch) => {
     dispatch(setIsFetchingPosts(true))
-    PostsAPI.getAll().then((posts) => {
-        dispatch(getAllPosts(posts))
-        dispatch(sortPosts(sortBy))
-    })
+    PostsAPI.getAll().then((posts) => dispatch(getAllPosts(posts)))
 }
 
-export const fetchAllPostsByCategory = (category, sortBy) => (dispatch) => {
+export const fetchAllPostsByCategory = (category) => (dispatch) => {
     dispatch(setIsFetchingPosts(true))
-    PostsAPI.getAllByCategory(category).then((posts) => {
+    PostsAPI.getAllByCategory(category).then((posts) =>
         dispatch(getAllPosts(posts))
-        dispatch(sortPosts(sortBy))
-    })
+    )
 }
 
 export const fetchPostById = (id) => (dispatch) => {
@@ -40,10 +35,7 @@ export const fetchPostById = (id) => (dispatch) => {
 
 export const fetchVotingAndSort = (postId, vote, sortBy) => (dispatch) => {
     dispatch(setIsFetchingPosts(true))
-    PostsAPI.voting(postId, vote).then((post) => {
-        dispatch(editPost(post))
-        dispatch(sortPosts(sortBy))
-    })
+    PostsAPI.voting(postId, vote).then((post) => dispatch(editPost(post)))
 }
 
 export const fetchVoting = (postId, vote) => (dispatch) => {
@@ -83,11 +75,6 @@ export const fetchRemovePost = (postId) => (dispatch) => {
         Promise.resolve()
     })
 }
-
-export const sortPosts = (sortBy) => ({
-    type: SORT_ALL_POSTS,
-    sortBy
-})
 
 export const setPost = (post) => ({
     type: SET_POST,

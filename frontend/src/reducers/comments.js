@@ -1,12 +1,10 @@
 import {
     REQUEST_COMMENTS,
     GET_COMMENTS_BY_POST,
-    SORT_ALL_COMMENTS,
     EDIT_COMMENT,
     ADD_COMMENT,
     REMOVE_COMMENT
 } from '../actions/comments'
-import sortBy from 'sort-by'
 
 const initialState = {
     comments: [],
@@ -24,12 +22,6 @@ const comments = (state = initialState, action) => {
             return {
                 comments: action.comments,
                 isFetching: action.isFetching
-            }
-        case SORT_ALL_COMMENTS:
-            let comments = [...state.comments]
-            return {
-                ...state,
-                comments: comments.sort(sortBy(action.sortBy))
             }
         case EDIT_COMMENT:
             return {

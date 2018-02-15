@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import sortBy from 'sort-by'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Pagination } from 'react-bootstrap'
@@ -9,8 +11,7 @@ import {
     fetchAllPosts,
     fetchAllPostsByCategory,
     fetchRemovePost,
-    fetchVotingAndSort,
-    sortPosts
+    fetchVoting
 } from '../actions/posts'
 import { setSort } from '../actions/sort'
 import { fetchAllCategories } from '../actions/categories'
@@ -31,29 +32,24 @@ class ListPost extends Component {
     }
 
     componentDidMount() {
-        const { match: { params: { category } }, sort } = this.props
+        const { match: { params: { category } } } = this.props
         if (category) {
-            this.props.fetchAllPostsByCategory(category, sort)
+            this.props.fetchAllPostsByCategory(category)
         } else {
-            this.props.fetchAllPosts(this.props.sort)
+            this.props.fetchAllPosts()
         }
         this.props.fetchAllCategories()
         window.scrollTo(0, 0)
     }
 
     componentWillReceiveProps(newProps) {
-        const { match: { params: { category } }, sort } = this.props
+        const { match: { params: { category } } } = this.props
         const { match: { params } } = newProps
         if (params.category && category !== params.category) {
-            this.props.fetchAllPostsByCategory(params.category, sort)
+            this.props.fetchAllPostsByCategory(params.category)
         } else if (category && !params.category) {
-            this.props.fetchAllPosts(this.props.sort)
+            this.props.fetchAllPosts()
         }
-    }
-
-    sortHandle = (sortBy) => {
-        this.props.setSort(sortBy)
-        this.props.sortPosts(sortBy)
     }
 
     openConfirmModal = (callback) => {
@@ -84,7 +80,14 @@ class ListPost extends Component {
     }
 
     render() {
-        const { posts, sort, sortOptions, categories, fetchVoting } = this.props
+        const {
+            posts,
+            sort,
+            sortOptions,
+            categories,
+            fetchVoting,
+            setSort
+        } = this.props
         const { handleRemove, showConfirmModal, pagination } = this.state
         const numPages = getNumPages(posts.length, pagination.perPage)
         const indexes = getIndexesPage(posts.length, pagination.activePage)
@@ -106,14 +109,12 @@ class ListPost extends Component {
                     <Select
                         value={sort.text}
                         options={sortOptions}
-                        handle={this.sortHandle}
+                        handle={setSort}
                         className="select-sort"
                     />
                     <PostsSummary
                         posts={posts.slice(indexes.first, indexes.last)}
-                        updateVote={(postId, vote) =>
-                            fetchVoting(postId, vote, sort)
-                        }
+                        updateVote={fetchVoting}
                         handleRemovePost={this.handleRemovePost}
                     />
                     <If condition={posts.length > 0}>
@@ -131,23 +132,28 @@ class ListPost extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    posts: state.posts.posts,
-    categories: state.categories.categories,
-    sort: state.sort.post,
-    sortOptions: state.sortOptions
+const mapStateToProps = ({
+    sort,
+    sortOptions,
+    posts: { posts },
+    categories: { categories }
+}) => ({
+    posts: posts.sort(sortBy(sort.post.key)),
+    categories,
+    sort: sort.post,
+    sortOptions
 })
 
 const mapDispatchToProps = {
     fetchAllPosts,
     fetchAllPostsByCategory,
     fetchRemovePost,
-    fetchVoting: fetchVotingAndSort,
+    fetchVoting,
     fetchAllCategories,
-    setSort: (sortBy) => setSort('post', sortBy),
-    sortPosts: sortPosts
+    setSort: (sortBy) => setSort('post', sortBy)
 }
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ListPost)
-)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(ListPost)

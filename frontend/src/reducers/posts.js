@@ -1,10 +1,8 @@
-import sortBy from 'sort-by'
 import {
     REQUEST_POSTS,
     REQUEST_POST,
     GET_ALL_POSTS,
     EDIT_POST,
-    SORT_ALL_POSTS,
     GET_POST_BY_ID,
     SET_POST,
     REMOVE_POST
@@ -33,12 +31,6 @@ const posts = (state = initialState, action) => {
                     .filter((post) => post.id !== action.post.id)
                     .concat(action.post),
                 isFetching: action.isFetching
-            }
-        case SORT_ALL_POSTS:
-            let posts = [...state.posts]
-            return {
-                ...state,
-                posts: posts.sort(sortBy(action.sortBy.key))
             }
         case REMOVE_POST:
             return {

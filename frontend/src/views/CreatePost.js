@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { change } from 'redux-form'
 import { connect } from 'react-redux'
 import PostForm from '../components/PostForm'
 import { fetchAddPost } from '../actions/posts'

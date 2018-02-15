@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import sortBy from 'sort-by'
 import { connect } from 'react-redux'
 import { Button, Pagination } from 'react-bootstrap'
 import { submit } from 'redux-form'
@@ -38,10 +39,13 @@ class ShowPost extends Component {
 
     componentDidMount() {
         const { match: { params: { post_id } }, history } = this.props
-        this.props.fetchPostById(post_id).then(() => {
-            this.props.fetchCommentsByPost(post_id)
-            window.scrollTo(0, 0)
-        }).catch(() => history.push('/404'))
+        this.props
+            .fetchPostById(post_id)
+            .then(() => {
+                this.props.fetchCommentsByPost(post_id)
+                window.scrollTo(0, 0)
+            })
+            .catch(() => history.push('/404'))
     }
 
     openSimpleModal = () => {
@@ -195,9 +199,9 @@ class ShowPost extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    post: state.post.post,
-    comments: state.comments.comments
+const mapStateToProps = ({ post: { post }, comments: { comments } }) => ({
+    post,
+    comments: comments.sort(sortBy('-voteScore'))
 })
 
 const mapDispatchToProps = {
