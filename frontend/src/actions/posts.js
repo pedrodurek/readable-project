@@ -24,7 +24,8 @@ export const fetchAllPostsByCategory = (category) => (dispatch) => {
 export const fetchPostById = (id) => (dispatch) => {
     dispatch(setIsFetchingPost(true))
     return PostsAPI.get(id).then((post) => {
-        if (post.error) {
+        if (post.error || !post.id) {
+            console.log(post)
             dispatch(setIsFetchingPost(false))
             return Promise.reject()
         }
