@@ -6,6 +6,10 @@ Project based on **react** and **redux** technologies to demonstrate the knowled
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). More information can be found [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Description
+
+A social content and discussion web application that allows users to submit content in addition to voting and commenting. Leveraged React to build a dynamic user interface, as well as Redux to manage global application state.
+
 ## How to install and run the project
 
 Clone the repository through the following link: https://github.com/pedrodurek/readable-project
