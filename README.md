@@ -13,6 +13,7 @@ A social content and discussion web application that allows users to submit cont
 Clone the repository through the following link: https://github.com/pedrodurek/readable-project
 
 ### Backend
+
 Open the terminal and run the following commands:
 ```bash
 $ cd api-server
